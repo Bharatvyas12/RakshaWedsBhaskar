@@ -1,0 +1,1842 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Royal Gateway | मंगल परिणयोत्सव - डा. रक्षा संग डा. भास्कर (RB)</title>
+
+  <!-- Google Fonts: Luxury Palace Serif, Devanagari & Modern Display -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@600;700;900&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Great+Vibes&family=Marcellus&family=Montserrat:wght@300;400;500;600;700&family=Noto+Serif+Devanagari:wght@400;500;600;700;800&family=Rozha+One&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==================== ROYAL PEACOCK PALACE TOKENS ==================== */
+    :root {
+      --bg-palace: #FAF6EE;            /* Warm Ivory Marble */
+      --bg-card: rgba(255, 255, 255, 0.95);
+      --primary: #781F34;              /* Deep Royal Wine */
+      --primary-dark: #420A18;
+      --primary-light: #FBF0F3;
+      --peacock-teal: #086972;         /* Vibrant Peacock Turquoise/Teal */
+      --peacock-emerald: #0A5C52;
+      --peacock-light: #E6F4F5;
+      --gold: #D4AF37;                 /* Pure Royal Gold */
+      --gold-dark: #A67C1E;
+      --gold-light: #F7EBC6;
+      --gold-border: rgba(212, 175, 55, 0.45);
+      --gold-glow: rgba(212, 175, 55, 0.35);
+      --text-dark: #27141A;
+      --text-muted: #674E55;
+      
+      --font-dev: 'Noto Serif Devanagari', serif;
+      --font-royal: 'Rozha One', serif;
+      --font-eng: 'Marcellus', serif;
+      --font-serif: 'Cormorant Garamond', serif;
+      --font-crest: 'Cinzel Decorative', serif;
+      --font-script: 'Great Vibes', cursive;
+      --font-sans: 'Montserrat', sans-serif;
+
+      --shadow-palace: 0 18px 50px rgba(8, 105, 114, 0.08);
+      --shadow-hover: 0 24px 65px rgba(120, 31, 52, 0.16);
+      --card-radius: 30px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-dev);
+      background-color: var(--bg-palace);
+      color: var(--text-dark);
+      line-height: 1.7;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Subtle Palace Jaali Pattern Watermark */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: 
+        radial-gradient(circle at 50% 50%, rgba(8, 105, 114, 0.08) 1.2px, transparent 1.2px),
+        repeating-linear-gradient(45deg, rgba(212, 175, 55, 0.025) 0, rgba(212, 175, 55, 0.025) 24px, transparent 24px, transparent 48px);
+      background-size: 36px 36px, 72px 72px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Falling Petals Canvas */
+    #petalCanvas {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 990;
+    }
+
+    /* ==================== 1. FULLSCREEN PEACOCK GATE ENTRANCE ==================== */
+    .peacock-entrance-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      background: #0D070A;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 1.3s cubic-bezier(0.2, 1, 0.3, 1), visibility 1.2s;
+      will-change: transform, opacity;
+    }
+
+    .peacock-entrance-screen.zooming {
+      opacity: 0;
+      transform: translateY(-60px) scale(1.15);
+      pointer-events: none;
+    }
+
+    .peacock-entrance-screen.zooming .peacock-gate-bg {
+      transform: scale(2.3);
+      filter: blur(2px);
+    }
+
+    .peacock-entrance-screen.unlocked {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      display: none;
+    }
+
+    .peacock-gate-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 1.6s cubic-bezier(0.2, 1, 0.3, 1);
+    }
+
+    .gate-lighting-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 55%, transparent 20%, rgba(13, 7, 10, 0.5) 75%, rgba(13, 7, 10, 0.9) 100%);
+      pointer-events: none;
+    }
+
+    .door-interact-wrapper {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transform: translateY(20px);
+      cursor: pointer;
+    }
+
+    .door-pulsing-seal {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #FFFDF8 0%, #D4AF37 60%, #8A6414 100%);
+      border: 3px double #FFFFFF;
+      box-shadow: 0 0 35px rgba(212, 175, 55, 0.8), 0 0 70px rgba(8, 105, 114, 0.5);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      animation: sealPulse 2.4s infinite ease-in-out;
+      transition: transform 0.3s;
+    }
+
+    .door-pulsing-seal:hover {
+      transform: scale(1.08);
+    }
+
+    @keyframes sealPulse {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 30px rgba(212, 175, 55, 0.7);
+      }
+      50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 50px rgba(212, 175, 55, 1), 0 0 80px rgba(8, 105, 114, 0.6);
+      }
+    }
+
+    .seal-scroll-mouse {
+      width: 22px;
+      height: 30px;
+      margin-bottom: 4px;
+    }
+
+    .mouse-wheel-dot {
+      animation: mouseScrollAnim 1.6s infinite ease-in-out;
+    }
+
+    @keyframes mouseScrollAnim {
+      0% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      50% {
+        transform: translateY(5px);
+        opacity: 0.2;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .seal-tap-text {
+      font-family: var(--font-sans);
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #3D101C;
+    }
+
+    .gate-calligraphy-title {
+      font-family: var(--font-royal);
+      font-size: clamp(30px, 5.5vw, 48px);
+      color: #FFFFFF;
+      margin-top: 24px;
+      text-shadow: 0 4px 15px rgba(0, 0, 0, 0.8), 0 0 20px rgba(212, 175, 55, 0.6);
+      letter-spacing: 1px;
+    }
+
+    .gate-calligraphy-sub {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--gold-light);
+      margin-top: 6px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+    }
+
+    .gate-scroll-cue {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 20px;
+      padding: 10px 24px;
+      background: rgba(13, 7, 10, 0.72);
+      border: 1px solid rgba(212, 175, 55, 0.55);
+      border-radius: 50px;
+      color: var(--gold-light);
+      font-size: 14px;
+      font-weight: 500;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+      animation: cueBounce 2s infinite ease-in-out;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .gate-scroll-cue:hover {
+      background: rgba(120, 31, 52, 0.85);
+      transform: translateY(-2px);
+    }
+
+    @keyframes cueBounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(6px);
+      }
+      60% {
+        transform: translateY(3px);
+      }
+    }
+
+    /* ==================== FLOATING MUSIC CONTROLLER ==================== */
+    .floating-music-bar {
+      position: fixed;
+      top: 24px;
+      right: 24px;
+      z-index: 1000;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--gold-border);
+      padding: 8px 18px;
+      border-radius: 50px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .floating-music-bar:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 40px var(--gold-glow);
+      border-color: var(--gold);
+    }
+
+    .music-disc {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--peacock-teal) 20%, var(--primary) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      transition: transform 0.3s;
+    }
+
+    .music-disc.spin {
+      animation: spinDisc 3s linear infinite;
+    }
+
+    @keyframes spinDisc {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .audio-waves {
+      display: flex;
+      align-items: flex-end;
+      gap: 3px;
+      height: 14px;
+    }
+
+    .audio-waves span {
+      width: 2.5px;
+      height: 4px;
+      background: var(--peacock-teal);
+      border-radius: 1px;
+      transition: height 0.2s;
+    }
+
+    .audio-waves.active span:nth-child(1) { animation: waveBar 0.9s infinite ease-in-out; }
+    .audio-waves.active span:nth-child(2) { animation: waveBar 0.9s infinite ease-in-out 0.2s; }
+    .audio-waves.active span:nth-child(3) { animation: waveBar 0.9s infinite ease-in-out 0.4s; }
+
+    @keyframes waveBar {
+      0%, 100% { height: 4px; }
+      50% { height: 14px; }
+    }
+
+    .music-text {
+      font-size: 13px;
+      font-family: var(--font-sans);
+      font-weight: 600;
+      color: var(--primary);
+      letter-spacing: 0.3px;
+    }
+
+    /* ==================== MAIN ROYAL GATEWAY LANDING PAGE ==================== */
+    .landing-wrapper {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 20px 100px 20px;
+    }
+
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(35px);
+      transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal-on-scroll.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ==================== 1. HERO SECTION WITH COUTURE JHAROKHA ==================== */
+    .hero-palace-section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 70px 16px 40px 16px;
+      position: relative;
+    }
+
+    .sacred-header-pills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .sacred-pill-item {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--peacock-teal);
+      background: #FFFFFF;
+      border: 1px solid rgba(8, 105, 114, 0.3);
+      padding: 5px 16px;
+      border-radius: 30px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+      letter-spacing: 0.4px;
+    }
+
+    /* Peacock-Framed Monogram */
+    .peacock-monogram-emblem {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      margin: 0 auto 16px auto;
+      border: 2px solid var(--gold);
+      background: radial-gradient(circle, #FFFDF9 0%, #E6F4F5 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 25px rgba(8, 105, 114, 0.25);
+      position: relative;
+    }
+
+    .peacock-monogram-emblem::after {
+      content: "";
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      border: 1.5px dashed var(--peacock-teal);
+      animation: spinDash 24s linear infinite;
+    }
+
+    @keyframes spinDash {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .crest-seal-letters {
+      font-family: var(--font-crest);
+      font-size: 34px;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: 1.5px;
+    }
+
+    .hero-eyebrow-tag {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--gold-dark);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    /* Shimmering Golden Title with Peacock Accents */
+    .hero-grand-title-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 8px;
+    }
+
+    .peacock-flank-icon {
+      font-size: 26px;
+      animation: peacockFlutter 3s infinite ease-in-out;
+    }
+
+    @keyframes peacockFlutter {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.15) rotate(5deg); }
+    }
+
+    .hero-grand-title {
+      font-family: var(--font-royal);
+      font-size: clamp(34px, 5.5vw, 54px);
+      color: var(--primary);
+      line-height: 1.2;
+      background: linear-gradient(135deg, var(--primary) 0%, #086972 50%, var(--primary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmerTitle 6s infinite ease-in-out;
+    }
+
+    @keyframes shimmerTitle {
+      0%, 100% { filter: drop-shadow(0 2px 6px rgba(120,31,52,0.1)); }
+      50% { filter: drop-shadow(0 4px 14px var(--gold-glow)); }
+    }
+
+    .hero-couple-headline {
+      font-family: var(--font-royal);
+      font-size: clamp(24px, 4vw, 38px);
+      color: var(--primary-dark);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .hero-sang-badge {
+      font-size: 18px;
+      color: var(--gold);
+      font-family: var(--font-royal);
+      font-weight: 700;
+      background: var(--gold-light);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--gold);
+      box-shadow: 0 4px 12px var(--gold-glow);
+    }
+
+    .hero-subdate {
+      font-family: var(--font-dev);
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--peacock-teal);
+      letter-spacing: 0.5px;
+      margin-bottom: 25px;
+    }
+
+    /* ==================== MODERN COUTURE COUPLE JHAROKHA STAGE ==================== */
+    .couture-jharokha-card {
+      position: relative;
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto 30px auto;
+      border-radius: 36px;
+      border: 2px solid var(--gold);
+      background: #FFFFFF;
+      box-shadow: 0 20px 60px rgba(8, 105, 114, 0.18), 0 0 30px var(--gold-glow);
+      overflow: hidden;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .couture-jharokha-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 26px 75px rgba(8, 105, 114, 0.25), 0 0 45px var(--gold-glow);
+    }
+
+    .couture-image-holder {
+      position: relative;
+      width: 100%;
+      height: auto;
+      overflow: hidden;
+      background: #1A0D12;
+    }
+
+    .couture-image-holder img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 6s ease;
+    }
+
+    .couture-jharokha-card:hover .couture-image-holder img {
+      transform: scale(1.03);
+    }
+
+    .couture-overlay-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 60%, rgba(20, 8, 13, 0.85) 100%);
+      pointer-events: none;
+    }
+
+    .couture-caption-banner {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 40px);
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(12px);
+      border: 1.5px solid var(--gold);
+      border-radius: 20px;
+      padding: 12px 18px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
+
+    .couture-caption-title {
+      font-family: var(--font-royal);
+      font-size: 20px;
+      color: var(--primary);
+    }
+
+    .couture-caption-sub {
+      font-size: 12.5px;
+      font-family: var(--font-sans);
+      color: var(--peacock-teal);
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    /* Scroll Hint */
+    .scroll-hint-link {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-muted);
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      cursor: pointer;
+      text-decoration: none;
+      animation: floatHint 2s infinite ease-in-out;
+    }
+
+    @keyframes floatHint {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(8px); }
+    }
+
+    /* ==================== 2. DIVINE INVOCATION (LORD GANESHA) ==================== */
+    .ganesha-invoc-card {
+      background: var(--bg-card);
+      border: 1.5px solid var(--gold-border);
+      border-radius: var(--card-radius);
+      padding: 40px 30px;
+      box-shadow: var(--shadow-palace);
+      margin-bottom: 60px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 30px;
+      align-items: center;
+      text-align: center;
+      position: relative;
+    }
+
+    @media (min-width: 768px) {
+      .ganesha-invoc-card {
+        grid-template-columns: 240px 1fr;
+        text-align: left;
+        padding: 45px 50px;
+      }
+    }
+
+    .ganesha-round-frame {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      margin: 0 auto;
+      border: 3px double var(--gold);
+      box-shadow: 0 12px 35px var(--gold-glow);
+      overflow: hidden;
+      background: #FFFDF8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .ganesha-round-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .ganesha-round-frame:hover img {
+      transform: scale(1.05);
+    }
+
+    .ganesha-card-title {
+      font-family: var(--font-royal);
+      font-size: 26px;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+
+    .ganesha-shloka-main {
+      font-size: 15.5px;
+      font-weight: 600;
+      color: var(--primary-dark);
+      line-height: 1.9;
+      margin-bottom: 12px;
+    }
+
+    .ganesha-shloka-sub {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* ==================== 3. THE COUPLE & LIVE COUNTDOWN ==================== */
+    .couple-master-section {
+      background: var(--bg-card);
+      border: 1.5px solid var(--gold-border);
+      border-radius: var(--card-radius);
+      box-shadow: var(--shadow-palace);
+      overflow: hidden;
+      margin-bottom: 60px;
+    }
+
+    .palace-art-container {
+      position: relative;
+      width: 100%;
+      max-height: 520px;
+      overflow: hidden;
+      background: #14080D;
+    }
+
+    .palace-art-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 8s ease;
+    }
+
+    .palace-art-container:hover img {
+      transform: scale(1.04);
+    }
+
+    .palace-art-veil {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(8, 105, 114, 0.15) 0%, transparent 40%, rgba(20, 8, 13, 0.8) 100%);
+      pointer-events: none;
+    }
+
+    .palace-art-caption-box {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 48px);
+      max-width: 650px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(14px);
+      border: 1.5px solid var(--gold);
+      border-radius: 20px;
+      padding: 16px 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    }
+
+    .palace-caption-head {
+      font-family: var(--font-royal);
+      font-size: 22px;
+      color: var(--primary);
+    }
+
+    .palace-caption-subtext {
+      font-size: 13px;
+      font-family: var(--font-sans);
+      color: var(--peacock-teal);
+      font-weight: 600;
+      margin-top: 3px;
+    }
+
+    .couple-inner-body {
+      padding: 45px 30px 40px 30px;
+      text-align: center;
+    }
+
+    .doctors-two-col {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin: 30px 0;
+    }
+
+    @media (min-width: 768px) {
+      .doctors-two-col {
+        grid-template-columns: 1fr 60px 1fr;
+        align-items: center;
+      }
+    }
+
+    .doctor-card-box {
+      background: #FFFFFF;
+      border: 1px solid var(--gold-border);
+      border-radius: 22px;
+      padding: 28px 24px;
+      box-shadow: var(--shadow-palace);
+      transition: all 0.3s ease;
+    }
+
+    .doctor-card-box:hover {
+      transform: translateY(-4px);
+      border-color: var(--peacock-teal);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .doctor-tag-pill {
+      display: inline-block;
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 700;
+      background: var(--peacock-light);
+      color: var(--peacock-teal);
+      padding: 4px 16px;
+      border-radius: 30px;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+
+    .doctor-name-display {
+      font-family: var(--font-royal);
+      font-size: 28px;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .doctor-lineage-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .doctor-lineage-desc strong {
+      color: var(--text-dark);
+    }
+
+    .doctors-mid-divider {
+      font-family: var(--font-royal);
+      font-size: 26px;
+      color: var(--gold);
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ==================== COUNTDOWN TIMER ==================== */
+    .countdown-card-block {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--peacock-teal) 100%);
+      border-radius: 22px;
+      padding: 28px 20px;
+      color: #FFFFFF;
+      box-shadow: 0 14px 40px rgba(8, 105, 114, 0.25);
+      margin-top: 20px;
+    }
+
+    .countdown-title-tag {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--gold-light);
+      margin-bottom: 16px;
+      font-weight: 700;
+    }
+
+    .countdown-cells-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .countdown-cell {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(247, 235, 198, 0.35);
+      border-radius: 14px;
+      padding: 12px 6px;
+      backdrop-filter: blur(6px);
+    }
+
+    .countdown-digit {
+      font-family: var(--font-eng);
+      font-size: 32px;
+      font-weight: 800;
+      color: #FFFFFF;
+      line-height: 1.1;
+    }
+
+    .countdown-unit-text {
+      font-family: var(--font-sans);
+      font-size: 11.5px;
+      color: var(--gold-light);
+      margin-top: 4px;
+      font-weight: 600;
+    }
+
+    /* ==================== 4. MANGLIK KARYAKRAM ==================== */
+    .section-header-box {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    .section-eyebrow {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      color: var(--peacock-teal);
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .section-royal-title {
+      font-family: var(--font-royal);
+      font-size: clamp(28px, 4.5vw, 40px);
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .venue-grand-ribbon {
+      background: linear-gradient(135deg, rgba(230, 244, 245, 0.6) 0%, #FFFFFF 100%);
+      border: 1.5px solid var(--peacock-teal);
+      border-radius: 18px;
+      padding: 16px 24px;
+      max-width: 700px;
+      margin: 0 auto 40px auto;
+      text-align: center;
+      box-shadow: var(--shadow-palace);
+    }
+
+    .venue-grand-ribbon strong {
+      color: var(--primary);
+      font-size: 15px;
+    }
+
+    .events-stack-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+      margin-bottom: 60px;
+    }
+
+    .event-card-item {
+      background: var(--bg-card);
+      border: 1.5px solid var(--gold-border);
+      border-radius: var(--card-radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-palace);
+      display: grid;
+      grid-template-columns: 1fr;
+      transition: all 0.35s ease;
+    }
+
+    @media (min-width: 768px) {
+      .event-card-item {
+        grid-template-columns: 360px 1fr;
+      }
+      .event-card-item.flipped {
+        grid-template-columns: 1fr 360px;
+      }
+      .event-card-item.flipped .event-media-holder {
+        order: 2;
+      }
+    }
+
+    .event-card-item:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--peacock-teal);
+    }
+
+    .event-media-holder {
+      position: relative;
+      min-height: 260px;
+      overflow: hidden;
+      background: #11080C;
+    }
+
+    .event-media-holder img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 4s ease;
+    }
+
+    .event-card-item:hover .event-media-holder img {
+      transform: scale(1.05);
+    }
+
+    .event-holder-badge {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: rgba(8, 105, 114, 0.85);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--gold);
+      color: #FFFFFF;
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .event-content-holder {
+      padding: 34px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .event-tag-pill {
+      display: inline-block;
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--peacock-teal);
+      background: var(--peacock-light);
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+      width: fit-content;
+    }
+
+    .event-headline {
+      font-family: var(--font-royal);
+      font-size: 26px;
+      color: var(--primary);
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+
+    .event-timing-rows {
+      font-size: 14px;
+      color: var(--text-muted);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .event-timing-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .event-timing-row svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--peacock-teal);
+      flex-shrink: 0;
+    }
+
+    .event-note-text {
+      font-size: 13.5px;
+      color: var(--text-dark);
+      line-height: 1.7;
+    }
+
+    .event-card-item.wedding-highlight {
+      border: 2px solid var(--gold);
+      background: #FFFDF9;
+      box-shadow: 0 20px 50px var(--gold-glow);
+    }
+
+    .event-card-item.wedding-highlight .event-headline {
+      color: var(--primary);
+      font-size: 28px;
+    }
+
+    /* ==================== 5. FAMILY & RELATIVES ==================== */
+    .family-main-card {
+      background: var(--bg-card);
+      border: 1.5px solid var(--gold-border);
+      border-radius: var(--card-radius);
+      padding: 45px 30px;
+      box-shadow: var(--shadow-palace);
+      margin-bottom: 60px;
+      text-align: center;
+    }
+
+    .family-cards-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    @media (min-width: 768px) {
+      .family-cards-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .family-cell-box {
+      background: #FFFFFF;
+      border: 1px solid var(--gold-border);
+      border-radius: 20px;
+      padding: 22px 20px;
+      box-shadow: var(--shadow-palace);
+      text-align: center;
+    }
+
+    .family-cell-box.lead-box {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, rgba(230, 244, 245, 0.4) 0%, #FFFFFF 100%);
+      border: 1.5px solid var(--peacock-teal);
+    }
+
+    .cell-box-badge {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+
+    .cell-box-text {
+      font-size: 14px;
+      color: var(--text-dark);
+      line-height: 1.7;
+    }
+
+    .bal-manuhar-box {
+      background: #FFF8FA;
+      border: 1.5px dashed var(--primary);
+      border-radius: 20px;
+      padding: 20px;
+      margin-top: 24px;
+      text-align: center;
+    }
+
+    .bal-manuhar-rhyme {
+      font-family: var(--font-dev);
+      font-size: 15px;
+      color: var(--primary);
+      font-style: italic;
+      line-height: 1.8;
+    }
+
+    /* ==================== 6. VENUE NAVIGATION (ONLY 2 CLEAN BUTTONS) ==================== */
+    .venue-main-card {
+      background: var(--bg-card);
+      border: 1.5px solid var(--gold);
+      border-radius: var(--card-radius);
+      padding: 45px 30px 40px 30px;
+      box-shadow: var(--shadow-hover);
+      text-align: center;
+    }
+
+    .venue-title-name {
+      font-family: var(--font-royal);
+      font-size: 32px;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .venue-subtitle-address {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 30px;
+      line-height: 1.7;
+    }
+
+    .venue-actions-flex {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    .action-button-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      flex: 1 1 240px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--peacock-teal) 100%);
+      color: #FFFFFF;
+      text-decoration: none;
+      padding: 16px 26px;
+      border-radius: 40px;
+      font-family: var(--font-sans);
+      font-size: 14.5px;
+      font-weight: 600;
+      border: 1px solid var(--gold);
+      box-shadow: 0 8px 25px rgba(8, 105, 114, 0.25);
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .action-button-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(8, 105, 114, 0.35);
+    }
+
+    .action-button-link.outline-style {
+      background: #FFFFFF;
+      color: var(--primary);
+      border: 1.5px solid var(--primary);
+      box-shadow: none;
+    }
+
+    .action-button-link.outline-style:hover {
+      background: var(--primary-light);
+    }
+
+    .page-footer-note {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 13.5px;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Falling Petals -->
+  <canvas id="petalCanvas"></canvas>
+
+  <!-- Audio: Romantic "Jashn-e-Bahaaraa" from the user's video reel -->
+  <video id="weddingThemeAudio" src="wedding_theme_song.mp4" playsinline loop style="display:none"></video>
+
+  <!-- ==================== 1. FULLSCREEN PEACOCK GATE ENTRANCE ==================== -->
+  <div class="peacock-entrance-screen" id="gateScreen">
+    <img src="peacock_gateway.jpg" alt="The Royal Peacock Gateway of Jaipur City Palace" class="peacock-gate-bg" id="gateBg">
+    <div class="gate-lighting-overlay"></div>
+
+    <div class="door-interact-wrapper">
+      <h1 class="gate-calligraphy-title">डा. रक्षा संग डा. भास्कर</h1>
+      <div class="gate-calligraphy-sub">शुक्रवार, 20 नवम्बर 2026 • पी.एन. पैलेस, बीकानेर</div>
+
+      <div class="gate-scroll-cue" id="gateScrollCueBtn">
+        <span>द्वार खोलने के लिए नीचे स्क्रॉल करें</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLOATING MUSIC CONTROLLER -->
+  <div class="floating-music-bar" id="musicToggleBtn" onclick="toggleWeddingMusic()" title="संगीत चालू / बंद करें">
+    <div class="music-disc" id="musicDiscIcon">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="#FFFFFF">
+        <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+      </svg>
+    </div>
+    <div class="audio-waves" id="audioWavesVis">
+      <span></span><span></span><span></span>
+    </div>
+    <span class="music-text" id="musicStatusText">संगीत: जश्न-ए-बहारा</span>
+  </div>
+
+  <!-- ==================== MAIN ROYAL GATEWAY LANDING PAGE CONTENT ==================== -->
+  <main class="landing-wrapper">
+
+    <!-- ==================== 1. HERO SECTION WITH MODERN COUTURE JHAROKHA ==================== -->
+    <section class="hero-palace-section reveal-on-scroll" id="page-home">
+      
+      <div class="sacred-header-pills">
+        <span class="sacred-pill-item">॥ श्री चारभुजाय नमः ॥</span>
+        <span class="sacred-pill-item">॥ श्री गणेशाय नमः ॥</span>
+        <span class="sacred-pill-item">॥ माँ दधिमथ्यै नमः ॥</span>
+        <span class="sacred-pill-item">॥ १००८ माताजी पितरजी महाराज ॥</span>
+      </div>
+
+      <!-- Peacock-Accented RB Monogram Seal -->
+      <div class="peacock-monogram-emblem">
+        <div class="crest-seal-letters">RB</div>
+      </div>
+
+      <div class="hero-eyebrow-tag">उत्सव परिणय बंधन का</div>
+      
+      <div class="hero-grand-title-wrap">
+        <span class="peacock-flank-icon">🦚</span>
+        <h1 class="hero-grand-title">मंगल परिणयोत्सव</h1>
+        <span class="peacock-flank-icon" style="transform: scaleX(-1);">🦚</span>
+      </div>
+
+      <div class="hero-couple-headline">
+        <span>आयुष्मती डा. रक्षा</span>
+        <span class="hero-sang-badge">संग</span>
+        <span>आयुष्मान डा. भास्कर</span>
+      </div>
+
+      <div class="hero-subdate">
+        शुक्रवार, 20 नवम्बर 2026 • पी.एन. पैलेस, बीकानेर
+      </div>
+
+      <!-- ==================== MODERN COUTURE COUPLE JHAROKHA STAGE ==================== -->
+      <div class="couture-jharokha-card" title="वर-वधू: डा. रक्षा एवं डा. भास्कर">
+        <div class="couture-image-holder">
+          <img src="modern_couple_couture.jpg" alt="डा. रक्षा एवं डा. भास्कर - रॉयल परिणय">
+          <div class="couture-overlay-gradient"></div>
+          
+          <div class="couture-caption-banner">
+            <div class="couture-caption-title">डा. रक्षा संग डा. भास्कर</div>
+            <div class="couture-caption-sub">“दो समर्पित चिकित्सकों का पावन परिणय संगम”</div>
+          </div>
+        </div>
+      </div>
+
+      <a href="#ganesha-section" class="scroll-hint-link">
+        <span>नीचे स्क्रॉल करें</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </a>
+    </section>
+
+    <!-- ==================== 2. DIVINE INVOCATION & GANESHA ==================== -->
+    <section class="ganesha-invoc-card reveal-on-scroll" id="ganesha-section">
+      <div class="ganesha-round-frame">
+        <img src="ganesha_gold.jpg" alt="श्री गणेशाय नमः">
+      </div>
+      <div>
+        <h2 class="ganesha-card-title">॥ श्री गणेशाय नमः ॥</h2>
+        <div class="ganesha-shloka-main">
+          विघ्न हरण मंगलकरण, गणनायक गणराज ।<br>
+          रिद्धि सिद्धि सहित पधारज्यो, पूरण करज्यो काज ॥
+        </div>
+        <div class="ganesha-shloka-sub">
+          ॐ वक्रतुंड महाकाय, सूर्यकोटि समप्रभः। निर्विघ्नं कुरुमे देव, सर्व कार्येषु सर्वदा ॥<br>
+          <strong>श्री विनायक जी महाराज की असीम अनुकम्पा से हमारे यहाँ तिवाड़ी परिवार का स्नेहिल निमंत्रण</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 3. THE COUPLE & LIVE COUNTDOWN ==================== -->
+    <section class="couple-master-section reveal-on-scroll">
+      
+      <!-- Palace Artwork Viewport -->
+      <div class="palace-art-container">
+        <img src="umaid_bhawan_couple.jpg" alt="Royal Couple at Palace">
+        <div class="palace-art-veil"></div>
+        <div class="palace-art-caption-box">
+          <div class="palace-caption-head">शाही आभा एवं पावन परिणय</div>
+          <div class="palace-caption-subtext">दो समर्पित चिकित्सकों का ऐतिहासिक परिणय उत्सव</div>
+        </div>
+      </div>
+
+      <div class="couple-inner-body">
+        <div class="section-eyebrow">THE BRIDE & GROOM</div>
+        <h2 class="section-royal-title">वर - वधू परिचय</h2>
+
+        <div class="doctors-two-col">
+          <!-- BRIDE -->
+          <div class="doctor-card-box">
+            <span class="doctor-tag-pill">आयुष्मती (वधू)</span>
+            <h3 class="doctor-name-display">डा. रक्षा</h3>
+            <div class="doctor-lineage-desc">
+              <strong>सुपुत्री:</strong> स्व. श्रीमती गीता देवी धर्मपत्नी स्व. श्री भंवरलाल जी तिवाड़ी<br>
+              <strong>सुपुत्री:</strong> श्रीमती सरोज देवी धर्मपत्नी श्रीकिशन तिवाड़ी (अपनों द्वारा)
+            </div>
+          </div>
+
+          <div class="doctors-mid-divider">संग</div>
+
+          <!-- GROOM -->
+          <div class="doctor-card-box">
+            <span class="doctor-tag-pill">आयुष्मान (वर)</span>
+            <h3 class="doctor-name-display">डा. भास्कर</h3>
+            <div class="doctor-lineage-desc">
+              <strong>सुपुत्र:</strong> श्रीमती सीता देवी धर्मपत्नी स्व. श्री मूलचन्द जी<br>
+              <strong>सुपुत्र:</strong> श्रीमती चन्द्रकांता धर्मपत्नी श्री अशोक कुमार जी
+            </div>
+          </div>
+        </div>
+
+        <!-- LIVE COUNTDOWN TIMER -->
+        <div class="countdown-card-block">
+          <div class="countdown-title-tag">शुभ विवाह लग्न उल्टी गिनती (LIVE COUNTDOWN)</div>
+          <div class="countdown-cells-grid">
+            <div class="countdown-cell">
+              <div class="countdown-digit" id="timerDays">--</div>
+              <div class="countdown-unit-text">दिन</div>
+            </div>
+            <div class="countdown-cell">
+              <div class="countdown-digit" id="timerHours">--</div>
+              <div class="countdown-unit-text">घंटे</div>
+            </div>
+            <div class="countdown-cell">
+              <div class="countdown-digit" id="timerMinutes">--</div>
+              <div class="countdown-unit-text">मिनट</div>
+            </div>
+            <div class="countdown-cell">
+              <div class="countdown-digit" id="timerSeconds">--</div>
+              <div class="countdown-unit-text">सेकंड</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== 4. MANGLIK KARYAKRAM ==================== -->
+    <section class="reveal-on-scroll">
+      <div class="section-header-box">
+        <div class="section-eyebrow">CELEBRATION ITINERARY</div>
+        <h2 class="section-royal-title">मांगलिक कार्यक्रम</h2>
+      </div>
+
+      <div class="venue-grand-ribbon">
+        🏰 <strong>विशेष सूचना:</strong> 19 एवं 20 नवम्बर 2026 के समस्त मांगलिक कार्यक्रम<br>
+        <strong>पी.एन. पैलेस, बीकानेर</strong> में सानंद संपन्न होंगे।
+      </div>
+
+      <div class="events-stack-wrap">
+
+        <!-- EVENT 1: GANESH NIMANTRAN & VINAYAK POOJAN (16 NOV) -->
+        <div class="event-card-item reveal-on-scroll">
+          <div class="event-media-holder">
+            <img src="ganesha_gold.jpg" alt="गणेश पूजन">
+            <span class="event-holder-badge">दिन 1 • परबतसर</span>
+          </div>
+          <div class="event-content-holder">
+            <span class="event-tag-pill">सोमवार, 16 नवम्बर 2026 (कार्तिक शुक्ल 7)</span>
+            <h3 class="event-headline">गणेश निमंत्रण एवं विनायक पूजन</h3>
+            <div class="event-timing-rows">
+              <div class="event-timing-row">
+                <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span><strong>गणेश निमंत्रण:</strong> प्रातः 9:15 बजे</span>
+              </div>
+              <div class="event-timing-row">
+                <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span><strong>विनायक पूजन:</strong> मध्यान्ह 3:15 बजे</span>
+              </div>
+              <div class="event-timing-row">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                <span><strong>स्थान:</strong> निवास स्थान (परबतसर)</span>
+              </div>
+            </div>
+            <p class="event-note-text">
+              विघ्नहर्ता गणपति बप्पा के पावन न्योते और कुलदेवताओं के आशीर्वाद के साथ विवाह उत्सव का शुभारंभ।
+            </p>
+          </div>
+        </div>
+
+        <!-- EVENT 2: MAYRA & CHAAK-KALASH (19 NOV) -->
+        <div class="event-card-item flipped reveal-on-scroll">
+          <div class="event-media-holder">
+            <img src="umaid_bhawan_couple.jpg" alt="मायरा एवं चाक-कलश">
+            <span class="event-holder-badge">दिन 2 • बीकानेर</span>
+          </div>
+          <div class="event-content-holder">
+            <span class="event-tag-pill" style="background:#FFF9E6; color:#9E6B00;">गुरुवार, 19 नवम्बर 2026 (कार्तिक शुक्ल 9)</span>
+            <h3 class="event-headline">मायरा (भात) एवं चाक-कलश</h3>
+            <div class="event-timing-rows">
+              <div class="event-timing-row">
+                <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span><strong>मायरा (भात):</strong> प्रातः 11:15 बजे</span>
+              </div>
+              <div class="event-timing-row">
+                <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span><strong>चाक-कलश:</strong> मध्यान्ह 12:15 बजे</span>
+              </div>
+              <div class="event-timing-row">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <span><strong>स्थान:</strong> पी.एन. पैलेस, बीकानेर</span>
+              </div>
+            </div>
+            <p class="event-note-text">
+              ननिहाल पक्ष द्वारा स्नेह और सम्मान का पावन भात (मायरा) एवं पारंपरिक चाक-कलश उत्सव।
+            </p>
+          </div>
+        </div>
+
+        <!-- EVENT 3: SAGAI & SANGEET (19 NOV) -->
+        <div class="event-card-item reveal-on-scroll">
+          <div class="event-media-holder">
+            <img src="sangeet_stage.jpg" alt="महिला संगीत एवं सगाई">
+            <span class="event-holder-badge">दिन 2 सांध्य • बीकानेर</span>
+          </div>
+          <div class="event-content-holder">
+            <span class="event-tag-pill" style="background:#FDE8F0; color:#8A1C4E;">गुरुवार, 19 नवम्बर 2026</span>
+            <h3 class="event-headline">सगाई समारोह एवं महिला संगीत</h3>
+            <div class="event-timing-rows">
+              <div class="event-timing-row">
+                <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span><strong>सगाई समारोह:</strong> मध्यान्ह 5:15 बजे</span>
+              </div>
+              <div class="event-timing-row">
+                <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span><strong>महिला संगीत:</strong> रात्रि 7:15 बजे से</span>
+              </div>
+              <div class="event-timing-row">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <span><strong>स्थान:</strong> पी.एन. पैलेस, बीकानेर</span>
+              </div>
+            </div>
+            <p class="event-note-text">
+              झिलमिलाती परियों जैसी रोशनियों, ढोलक की मधुर थाप, नृत्य और खुशियों से सजी संगीतमयी शाम।
+            </p>
+          </div>
+        </div>
+
+        <!-- EVENT 4: PANIGRAHAN SANSKAR & AASHIRWAD (20 NOV) -->
+        <div class="event-card-item flipped wedding-highlight reveal-on-scroll">
+          <div class="event-media-holder">
+            <img src="mandap_fireworks.jpg" alt="शुभ विवाह पाणिग्रहण संस्कार">
+            <span class="event-holder-badge" style="background: var(--primary); color:#fff;">दिन 3 • मुख्य विवाह</span>
+          </div>
+          <div class="event-content-holder">
+            <span class="event-tag-pill" style="background: var(--primary); color: #fff;">
+              शुक्रवार, 20 नवम्बर 2026 (कार्तिक शुक्ल 11)
+            </span>
+            <h3 class="event-headline">पाणिग्रहण संस्कार एवं आशीर्वाद समारोह</h3>
+            <div class="event-timing-rows">
+              <div class="event-timing-row">
+                <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span><strong>पाणिग्रहण संस्कार:</strong> दिवा शुभ लग्नानुसार</span>
+              </div>
+              <div class="event-timing-row">
+                <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span><strong>आशीर्वाद एवं स्नेहभोज:</strong> रात्रि 7:15 बजे</span>
+              </div>
+              <div class="event-timing-row">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <span><strong>स्थान:</strong> पी.एन. पैलेस, बीकानेर</span>
+              </div>
+            </div>
+            <p class="event-note-text">
+              अग्नि को साक्षी मानकर सात फेरों का पावन बंधन, तथा वर-वधू को सपरिवार शुभाशीर्वाद एवं स्नेहभोज।
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== 5. PARIVAR & NIMANTRAK ==================== -->
+    <section class="family-main-card reveal-on-scroll">
+      <div class="section-eyebrow">OUR FAMILY & RELATIVES</div>
+      <h2 class="section-royal-title">स्नेहिल निमंत्रण एवं परिवार</h2>
+
+      <div class="family-cards-grid">
+        
+        <!-- Uttarakankshi -->
+        <div class="family-cell-box lead-box">
+          <div class="cell-box-badge">👑 उत्तराकांक्षी</div>
+          <div class="cell-box-text">
+            <strong>श्रीकिशन, रमेशचन्द, महेशचन्द तिवाड़ी (मकराना वाले)</strong><br>
+            "मंगलम भवन", गणेश कॉलोनी, परबतसर, जिला - डीडवाना-कुचामन (राज.)<br>
+            📞 9460272811, 7014174415
+          </div>
+        </div>
+
+        <!-- Vishesh Aagrah -->
+        <div class="family-cell-box">
+          <div class="cell-box-badge">✨ विशेष आग्रह</div>
+          <div class="cell-box-text">
+            <strong>शकुन्तला तिवाड़ी</strong>
+          </div>
+        </div>
+
+        <!-- Darshanabhilashi -->
+        <div class="family-cell-box">
+          <div class="cell-box-badge">🌸 दर्शनाभिलाषी</div>
+          <div class="cell-box-text">
+            श्रीकिशन, रमेशचन्द, महेशचन्द, जितेन्द्र, हर्ष, विशाल, विष्णु, नवीन, प्रणीत एवं समस्त तिवाड़ी परिवार
+          </div>
+        </div>
+
+        <!-- Swagatkarta -->
+        <div class="family-cell-box">
+          <div class="cell-box-badge">🙏 स्वागतकर्ता</div>
+          <div class="cell-box-text">
+            श्रीमती मन्जू, श्रीमती पूजा, श्रीमती नेहा, श्रीमती सुलोचना, श्रीमती ज्योति तिवाड़ी
+          </div>
+        </div>
+
+        <!-- Nanihaal Paksh -->
+        <div class="family-cell-box">
+          <div class="cell-box-badge">🌿 ननिहाल पक्ष</div>
+          <div class="cell-box-text" style="font-size:13px;">
+            श्री सत्यनारायण जी, किशनगोपाल जी, पूनमचन्द जी, रूपनारायणजी, मुरली मनोहर जी, रमेश जी, दिनेश जी, सुरेश जी, राजेश जी, मनोज जी, सौरभ जी, भरत जी (परबतसर)
+          </div>
+        </div>
+
+        <!-- Bade Mayredaar -->
+        <div class="family-cell-box lead-box">
+          <div class="cell-box-badge">🎁 बड़े मायरेदार</div>
+          <div class="cell-box-text" style="font-size:13px; text-align: left;">
+            <p><strong>ननिहाल पक्ष:</strong> श्री रमेशचन्द जी, शिवरतन जी, विजयकुमार जी, बनवारी जी व्यास (जखेड़ा, डीडवाना)</p>
+            <p style="margin-top:6px;"><strong>दादेरा पक्ष:</strong> श्री भालचन्द जी, मनोजकुमार जी मान्डोतल्या (कुचौली, कुचामन सिटी)</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="bal-manuhar-box">
+        <div class="cell-box-badge">👶 बाल मनुहार</div>
+        <div class="bal-manuhar-rhyme">
+          “मीठे रस से भरी रे, राधा रानी लागे...<br>
+          हमारी बुआ / दीदी की शादी में जलूल-जलूल पधारना!”<br>
+          <strong>- हिमांशी एवं श्री तिवाड़ी</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 6. VENUE NAVIGATION (2 CLEAN ACTION BUTTONS) ==================== -->
+    <section class="venue-main-card reveal-on-scroll">
+      <div class="section-eyebrow">VENUE & LOCATION</div>
+      <h2 class="venue-title-name">🏰 पी.एन. पैलेस (P.N. Palace)</h2>
+      <div class="venue-subtitle-address">
+        बीकानेर, राजस्थान<br>
+        (19 एवं 20 नवम्बर 2026 के समस्त मांगलिक कार्यक्रम)
+      </div>
+
+      <div class="venue-actions-flex">
+        <!-- 1. Google Maps Navigation Button -->
+        <a href="https://maps.google.com/?q=P.N.+Palace+Bikaner" target="_blank" class="action-button-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+            <circle cx="12" cy="9" r="2.5"/>
+          </svg>
+          गूगल मैप्स पर सीधा रास्ता देखें (Open Map)
+        </a>
+
+        <!-- 2. Direct Call Button -->
+        <a href="tel:+919460272811" class="action-button-link outline-style">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+          संपर्क: 9460272811
+        </a>
+      </div>
+
+      <div class="page-footer-note">
+        आपकी स्नेहिल उपस्थिति ही हमारा सबसे बड़ा उपहार है।<br>
+        <strong>- विनीत: समस्त तिवाड़ी परिवार (मकराना वाले)</strong>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== JAVASCRIPT ==================== -->
+  <script>
+    /* Ensure fresh start from the grand peacock gateway on load */
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+
+    /* 1. THE ROYAL GATEWAY (PEACOCK GATE) UNLOCK ANIMATION ON SCROLL OR CLICK */
+    const gateScreen = document.getElementById('gateScreen');
+    const audioEl = document.getElementById('weddingThemeAudio');
+    const discIcon = document.getElementById('musicDiscIcon');
+    const wavesVis = document.getElementById('audioWavesVis');
+    const statusText = document.getElementById('musicStatusText');
+    let isMusicPlaying = false;
+    let gatewayUnlocked = false;
+
+    function unlockRoyalGateway() {
+      if (gatewayUnlocked) return;
+      gatewayUnlocked = true;
+
+      gateScreen.classList.add('zooming');
+
+      // Start romantic music "Jashn-e-Bahaaraa"
+      audioEl.play().then(() => {
+        isMusicPlaying = true;
+        discIcon.classList.add('spin');
+        wavesVis.classList.add('active');
+        statusText.innerText = "संगीत ऑन";
+      }).catch(err => {
+        console.log("Audio unlock:", err);
+      });
+
+      // Burst of royal petals
+      for (let i = 0; i < 45; i++) {
+        petals.push(new FallingPetal(true));
+      }
+
+      setTimeout(() => {
+        gateScreen.classList.add('unlocked');
+      }, 1100);
+    }
+
+    // A. Mouse Wheel Scroll Down Trigger
+    window.addEventListener('wheel', (e) => {
+      if (!gatewayUnlocked && e.deltaY > 5) {
+        unlockRoyalGateway();
+      }
+    }, { passive: true });
+
+    // B. Touch Swipe Up (Scroll Down) for Mobile Devices
+    let touchStartY = 0;
+    window.addEventListener('touchstart', (e) => {
+      touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+
+    window.addEventListener('touchmove', (e) => {
+      if (!gatewayUnlocked) {
+        const touchCurrentY = e.touches[0].clientY;
+        const diffY = touchStartY - touchCurrentY;
+        if (diffY > 15) { // User swiped up (scrolling downwards)
+          unlockRoyalGateway();
+        }
+      }
+    }, { passive: true });
+
+    // C. Scrollbar Dragging / Native Window Scroll Trigger
+    window.addEventListener('scroll', () => {
+      if (!gatewayUnlocked && window.scrollY > 8) {
+        unlockRoyalGateway();
+      }
+    }, { passive: true });
+
+    // D. Keyboard Scroll Keys (Down Arrow, PageDown, Space, Enter)
+    window.addEventListener('keydown', (e) => {
+      if (!gatewayUnlocked && ['ArrowDown', 'PageDown', ' ', 'Enter'].includes(e.key)) {
+        unlockRoyalGateway();
+      }
+    });
+
+    // E. Direct Click / Tap Anywhere on the Gate as Seamless Fallback
+    if (gateScreen) {
+      gateScreen.addEventListener('click', unlockRoyalGateway);
+    }
+
+    /* 2. MUSIC CONTROLLER */
+    function toggleWeddingMusic() {
+      if (!isMusicPlaying) {
+        audioEl.play().then(() => {
+          isMusicPlaying = true;
+          discIcon.classList.add('spin');
+          wavesVis.classList.add('active');
+          statusText.innerText = "संगीत ऑन";
+        }).catch(() => {});
+      } else {
+        audioEl.pause();
+        isMusicPlaying = false;
+        discIcon.classList.remove('spin');
+        wavesVis.classList.remove('active');
+        statusText.innerText = "संगीत म्यूट";
+      }
+    }
+
+    /* 3. SCROLL REVEAL OBSERVER */
+    const revealElements = document.querySelectorAll('.reveal-on-scroll');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    }, {
+      threshold: 0.12,
+      rootMargin: "0px 0px -40px 0px"
+    });
+
+    revealElements.forEach(el => observer.observe(el));
+
+    /* 4. COUNTDOWN TIMER (20 Nov 2026, 19:15 IST) */
+    const targetDate = new Date("November 20, 2026 19:15:00").getTime();
+    function refreshCountdown() {
+      const now = new Date().getTime();
+      const diff = targetDate - now;
+
+      if (diff > 0) {
+        const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+        document.getElementById('timerDays').innerText = d < 10 ? '0' + d : d;
+        document.getElementById('timerHours').innerText = h < 10 ? '0' + h : h;
+        document.getElementById('timerMinutes').innerText = m < 10 ? '0' + m : m;
+        document.getElementById('timerSeconds').innerText = s < 10 ? '0' + s : s;
+      } else {
+        document.getElementById('timerDays').innerText = "00";
+        document.getElementById('timerHours').innerText = "00";
+        document.getElementById('timerMinutes').innerText = "00";
+        document.getElementById('timerSeconds').innerText = "00";
+      }
+    }
+    setInterval(refreshCountdown, 1000);
+    refreshCountdown();
+
+    /* 5. REALISTIC FALLING PETALS */
+    const canvas = document.getElementById('petalCanvas');
+    const ctx = canvas.getContext('2d');
+
+    function fitCanvasSize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', fitCanvasSize);
+    fitCanvasSize();
+
+    const petalColors = [
+      'rgba(224, 45, 80, 0.85)',
+      'rgba(255, 128, 160, 0.85)',
+      'rgba(255, 185, 30, 0.9)',
+      'rgba(8, 105, 114, 0.6)'
+    ];
+
+    class FallingPetal {
+      constructor(burst = false) {
+        this.reset(burst);
+      }
+      reset(burst = false) {
+        this.x = burst ? window.innerWidth / 2 + (Math.random() * 300 - 150) : Math.random() * canvas.width;
+        this.y = burst ? window.innerHeight / 2 : Math.random() * -120;
+        this.size = Math.random() * 12 + 8;
+        this.speedY = burst ? (Math.random() * -7 - 2) : Math.random() * 1.5 + 1.1;
+        this.speedX = Math.random() * 2 - 1;
+        this.angle = Math.random() * 360;
+        this.rotSpeed = Math.random() * 2.4 - 1.2;
+        this.color = petalColors[Math.floor(Math.random() * petalColors.length)];
+      }
+      step() {
+        this.y += this.speedY;
+        this.x += Math.sin(this.y / 28) * 1.3 + this.speedX;
+        this.angle += this.rotSpeed;
+
+        if (this.y > canvas.height + 25) {
+          this.reset(false);
+        }
+      }
+      draw() {
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate((this.angle * Math.PI) / 180);
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.bezierCurveTo(this.size, -this.size / 2, this.size, this.size, 0, this.size * 1.45);
+        ctx.bezierCurveTo(-this.size, this.size, -this.size, -this.size / 2, 0, 0);
+        ctx.fill();
+        ctx.restore();
+      }
+    }
+
+    const petals = [];
+    for (let i = 0; i < 28; i++) {
+      petals.push(new FallingPetal());
+      petals[i].y = Math.random() * canvas.height;
+    }
+
+    function animatePetalsLoop() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      petals.forEach(p => {
+        p.step();
+        p.draw();
+      });
+      requestAnimationFrame(animatePetalsLoop);
+    }
+    animatePetalsLoop();
+  </script>
+</body>
+</html>
