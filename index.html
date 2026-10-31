@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Royal Gateway | मंगल परिणयोत्सव - डा. रक्षा संग डा. भास्कर (RB)</title>
+  <title>The Royal Gateway | मंगल परिणयोत्सव - डॉ. रक्षा संग डॉ. भास्कर (RB)</title>
 
   <!-- Google Fonts: Luxury Palace Serif, Devanagari & Modern Display -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -211,12 +211,13 @@
     }
 
     .gate-calligraphy-title {
-      font-family: var(--font-royal);
+      font-family: var(--font-dev);
+      font-weight: 700;
       font-size: clamp(30px, 5.5vw, 48px);
       color: #FFFFFF;
       margin-top: 24px;
       text-shadow: 0 4px 15px rgba(0, 0, 0, 0.8), 0 0 20px rgba(212, 175, 55, 0.6);
-      letter-spacing: 1px;
+      letter-spacing: 0.5px;
     }
 
     .gate-calligraphy-sub {
@@ -492,19 +493,20 @@
     }
 
     .hero-sang-badge {
-      font-size: 18px;
-      color: var(--gold);
+      font-size: 19px;
+      color: #FFFFFF;
       font-family: var(--font-royal);
       font-weight: 700;
-      background: var(--gold-light);
-      width: 40px;
-      height: 40px;
+      background: linear-gradient(135deg, var(--primary) 0%, #A62B4A 100%);
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      border: 1px solid var(--gold);
-      box-shadow: 0 4px 12px var(--gold-glow);
+      border: 2px solid var(--gold);
+      box-shadow: 0 4px 14px rgba(120, 31, 52, 0.35), 0 0 10px rgba(212, 175, 55, 0.4);
+      flex-shrink: 0;
     }
 
     .hero-subdate {
@@ -528,6 +530,8 @@
       box-shadow: 0 20px 60px rgba(8, 105, 114, 0.18), 0 0 30px var(--gold-glow);
       overflow: hidden;
       transition: transform 0.4s ease, box-shadow 0.4s ease;
+      opacity: 1;
+      transform: none;
     }
 
     .couture-jharokha-card:hover {
@@ -682,6 +686,395 @@
       line-height: 1.7;
     }
 
+    /* ==================== TRENDING RADHA-KRISHNA MILAP & COUPLE MEET SECTION ==================== */
+    .radha-krishna-milap-section {
+      background: var(--bg-card);
+      border: 1.5px solid var(--gold);
+      border-radius: var(--card-radius);
+      padding: 45px 24px;
+      box-shadow: var(--shadow-palace);
+      margin-bottom: 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .milap-subhead-text {
+      font-size: 15px;
+      color: var(--text-muted);
+      max-width: 650px;
+      margin: 0 auto 28px auto;
+      line-height: 1.7;
+    }
+
+    .milap-stage-box {
+      position: relative;
+      width: 100%;
+      max-width: 780px;
+      margin: 0 auto 24px auto;
+      border-radius: 28px;
+      border: 2px solid var(--gold);
+      box-shadow: 0 16px 50px rgba(8, 105, 114, 0.2), 0 0 35px var(--gold-glow);
+      overflow: hidden;
+      background: radial-gradient(circle at 50% 50%, #FFFDF7 0%, #FAF1DF 100%);
+      min-height: 420px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @media (max-width: 600px) {
+      .milap-stage-box {
+        min-height: 380px;
+      }
+    }
+
+    /* 1. Divine Hands Moving View */
+    .divine-hands-view {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s ease;
+      z-index: 2;
+      overflow: hidden;
+    }
+
+    .divine-hands-view.hidden-view {
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(0.96);
+    }
+
+    .divine-stage-canvas-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 50%, #FFFDF7 0%, #FAF0DC 55%, #EEDBBF 100%);
+      z-index: 1;
+    }
+
+    .divine-halo-light {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.3) 0%, transparent 65%);
+      pointer-events: none;
+      animation: haloPulse 3s infinite ease-in-out;
+      z-index: 2;
+    }
+
+    @keyframes haloPulse {
+      0%, 100% { opacity: 0.6; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.1); }
+    }
+
+    .divine-hand-item {
+      position: absolute;
+      top: 50%;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 2.8s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.8s ease;
+      will-change: transform;
+    }
+
+    .krishna-hand-wrap {
+      left: 0;
+      transform: translate(-105%, -50%);
+      width: clamp(230px, 44vw, 380px);
+    }
+
+    .radha-hand-wrap {
+      right: 0;
+      transform: translate(105%, -50%);
+      width: clamp(230px, 44vw, 380px);
+    }
+
+    /* Moving in state: Hands slow down and ACTUALLY TOUCH and CLASP */
+    .divine-hands-view.animate-hands .krishna-hand-wrap {
+      transform: translate(32%, -50%);
+    }
+
+    .divine-hands-view.animate-hands .radha-hand-wrap {
+      transform: translate(-32%, -50%);
+    }
+
+    @media (max-width: 600px) {
+      .divine-hands-view.animate-hands .krishna-hand-wrap {
+        transform: translate(38%, -50%);
+      }
+      .divine-hands-view.animate-hands .radha-hand-wrap {
+        transform: translate(-38%, -50%);
+      }
+    }
+
+    .divine-hand-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      filter: drop-shadow(0 12px 28px rgba(212, 175, 55, 0.35));
+    }
+
+    .hand-sacred-caption {
+      font-family: var(--font-royal);
+      font-size: 13.5px;
+      color: var(--primary);
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid var(--gold);
+      padding: 3px 14px;
+      border-radius: 16px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+      margin-top: -10px;
+      z-index: 4;
+      white-space: nowrap;
+    }
+
+    /* Divine Touch Burst on hands meeting */
+    .divine-touch-burst {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      z-index: 10;
+      opacity: 0;
+      transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
+      pointer-events: none;
+    }
+
+    .divine-hands-view.hands-connected .divine-touch-burst {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+    }
+
+    .touch-burst-glow {
+      position: absolute;
+      inset: -60px;
+      background: radial-gradient(circle, rgba(255, 252, 235, 1) 0%, rgba(212, 175, 55, 0.85) 45%, transparent 75%);
+      border-radius: 50%;
+      animation: burstRotate 4s linear infinite;
+    }
+
+    @keyframes burstRotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .touch-sacred-om {
+      position: relative;
+      font-family: var(--font-royal);
+      font-size: 42px;
+      color: var(--primary);
+      text-shadow: 0 0 16px var(--gold), 0 0 32px #FFF;
+      animation: omPulse 1.4s infinite ease-in-out;
+    }
+
+    @keyframes omPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+    }
+
+    /* 2. Couple Coming Together View */
+    .couple-coming-together-view {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      padding: 20px;
+      background: radial-gradient(circle at 50% 40%, #FFFDF9 0%, #F5ECE0 60%, #E8D7C0 100%);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s ease;
+      z-index: 1;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .couple-coming-together-view.active-view {
+      opacity: 1;
+      pointer-events: auto;
+      z-index: 3;
+    }
+
+    .milap-actor {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 1s ease;
+    }
+
+    .groom-actor {
+      transform: translateX(-140px);
+      opacity: 0;
+    }
+
+    .bride-actor {
+      transform: translateX(140px);
+      opacity: 0;
+    }
+
+    .couple-coming-together-view.animate-actors .groom-actor,
+    .couple-coming-together-view.animate-actors .bride-actor {
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+    .actor-photo-frame {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      border: 3px double var(--gold);
+      box-shadow: 0 10px 30px rgba(120, 31, 52, 0.25), 0 0 20px var(--gold-glow);
+      overflow: hidden;
+      background: #FFFFFF;
+      margin-bottom: 10px;
+      transition: transform 0.4s ease;
+    }
+
+    @media (min-width: 600px) {
+      .actor-photo-frame {
+        width: 170px;
+        height: 170px;
+      }
+    }
+
+    .actor-photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+
+    .actor-name-badge {
+      font-family: var(--font-dev);
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--primary);
+      background: rgba(255, 255, 255, 0.96);
+      border: 1.5px solid var(--gold);
+      padding: 5px 16px;
+      border-radius: 20px;
+      box-shadow: 0 4px 14px rgba(120, 31, 52, 0.12), 0 0 10px rgba(212, 175, 55, 0.25);
+      white-space: nowrap;
+      letter-spacing: 0.3px;
+    }
+
+    .milap-center-knot {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 5;
+      transform: scale(0);
+      opacity: 0;
+      transition: transform 0.8s 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.6s 0.6s ease;
+    }
+
+    .couple-coming-together-view.animate-actors .milap-center-knot {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    /* Auspicious Mangal Kalash Seal */
+    .glowing-kalash-seal {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #FFFDF8 0%, #FFF3D6 60%, var(--gold-light) 100%);
+      border: 2px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 25px rgba(212, 175, 55, 0.85), 0 0 50px rgba(120, 31, 52, 0.35);
+      animation: kalashPulse 2.2s infinite ease-in-out;
+    }
+
+    @keyframes kalashPulse {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 20px rgba(212, 175, 55, 0.7);
+      }
+      50% {
+        transform: scale(1.08);
+        box-shadow: 0 0 35px rgba(212, 175, 55, 1), 0 0 60px rgba(8, 105, 114, 0.4);
+      }
+    }
+
+    .knot-sacred-text {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--peacock-teal);
+      letter-spacing: 1px;
+      margin-top: 4px;
+      text-transform: uppercase;
+      background: #FFFFFF;
+      padding: 2px 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(8, 105, 114, 0.3);
+      white-space: nowrap;
+    }
+
+    .stage-floating-caption {
+      position: absolute;
+      bottom: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 32px);
+      max-width: 600px;
+      background: rgba(13, 7, 10, 0.78);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--gold);
+      border-radius: 30px;
+      padding: 7px 18px;
+      color: var(--gold-light);
+      font-size: 13.5px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+      z-index: 10;
+    }
+
+    .stage-floating-caption.union-caption {
+      background: rgba(120, 31, 52, 0.9);
+      color: #FFFFFF;
+    }
+
+    .milap-replay-badge {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      z-index: 30;
+      background: rgba(255, 255, 255, 0.94);
+      border: 1.5px solid var(--gold);
+      color: var(--primary);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: all 0.25s ease;
+    }
+
+    .milap-replay-badge:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px var(--gold-glow);
+    }
+
     /* ==================== 3. THE COUPLE & LIVE COUNTDOWN ==================== */
     .couple-master-section {
       background: var(--bg-card);
@@ -695,16 +1088,28 @@
     .palace-art-container {
       position: relative;
       width: 100%;
-      max-height: 520px;
+      height: 520px;
       overflow: hidden;
       background: #14080D;
+      border-radius: 28px 28px 0 0;
     }
 
     .palace-art-container img {
       width: 100%;
-      height: auto;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 25%;
       display: block;
       transition: transform 8s ease;
+    }
+
+    @media (max-width: 600px) {
+      .palace-art-container {
+        height: 380px;
+      }
+      .palace-art-container img {
+        object-position: center 20%;
+      }
     }
 
     .palace-art-container:hover img {
@@ -782,6 +1187,32 @@
       box-shadow: var(--shadow-hover);
     }
 
+    /* Doctor Circle Portrait inside Introduction */
+    .doctor-avatar-circle {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      border: 2.5px solid var(--gold);
+      box-shadow: 0 8px 24px rgba(120, 31, 52, 0.2), 0 0 16px var(--gold-glow);
+      margin: 0 auto 16px auto;
+      overflow: hidden;
+      background: #FFFDF9;
+      position: relative;
+    }
+
+    .doctor-avatar-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .doctor-card-box:hover .doctor-avatar-circle img {
+      transform: scale(1.08);
+    }
+
     .doctor-tag-pill {
       display: inline-block;
       font-family: var(--font-sans);
@@ -796,7 +1227,8 @@
     }
 
     .doctor-name-display {
-      font-family: var(--font-royal);
+      font-family: var(--font-dev);
+      font-weight: 700;
       font-size: 28px;
       color: var(--primary);
       margin-bottom: 10px;
@@ -874,182 +1306,336 @@
       font-weight: 600;
     }
 
-    /* ==================== 4. MANGLIK KARYAKRAM ==================== */
-    .section-header-box {
-      text-align: center;
-      margin-bottom: 35px;
-    }
-
-    .section-eyebrow {
-      font-family: var(--font-sans);
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 2.5px;
-      color: var(--peacock-teal);
-      font-weight: 700;
-      margin-bottom: 6px;
-    }
-
-    .section-royal-title {
-      font-family: var(--font-royal);
-      font-size: clamp(28px, 4.5vw, 40px);
-      color: var(--primary);
-      margin-bottom: 10px;
-    }
-
-    .venue-grand-ribbon {
-      background: linear-gradient(135deg, rgba(230, 244, 245, 0.6) 0%, #FFFFFF 100%);
-      border: 1.5px solid var(--peacock-teal);
-      border-radius: 18px;
-      padding: 16px 24px;
-      max-width: 700px;
-      margin: 0 auto 40px auto;
-      text-align: center;
-      box-shadow: var(--shadow-palace);
-    }
-
-    .venue-grand-ribbon strong {
-      color: var(--primary);
-      font-size: 15px;
-    }
-
+        /* ==================== 4. MANGLIK KARYAKRAM ==================== */
     .events-stack-wrap {
       display: flex;
       flex-direction: column;
-      gap: 36px;
+      gap: 34px;
       margin-bottom: 60px;
+      overflow: visible;
     }
 
     .event-card-item {
-      background: var(--bg-card);
-      border: 1.5px solid var(--gold-border);
-      border-radius: var(--card-radius);
+      background: #FFFFFF;
+      border: 1.8px solid var(--gold);
+      border-radius: 28px;
+      padding: 34px 38px;
+      box-shadow: 0 16px 45px rgba(120, 31, 52, 0.08), 0 0 20px var(--gold-glow);
+      position: relative;
       overflow: hidden;
-      box-shadow: var(--shadow-palace);
-      display: grid;
-      grid-template-columns: 1fr;
-      transition: all 0.35s ease;
+      transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.85s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+      will-change: transform, opacity;
     }
 
-    @media (min-width: 768px) {
-      .event-card-item {
-        grid-template-columns: 360px 1fr;
-      }
-      .event-card-item.flipped {
-        grid-template-columns: 1fr 360px;
-      }
-      .event-card-item.flipped .event-media-holder {
-        order: 2;
-      }
+    .event-card-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, #875F05, #FFE494, #D4AF37, #875F05);
     }
 
     .event-card-item:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-hover);
+      transform: translateY(-6px) !important;
+      box-shadow: 0 22px 60px rgba(8, 105, 114, 0.2), 0 0 35px var(--gold-glow);
       border-color: var(--peacock-teal);
     }
 
-    .event-media-holder {
-      position: relative;
-      min-height: 260px;
-      overflow: hidden;
-      background: #11080C;
+    /* Alternating Slide-In Animations: Left vs Right */
+    .event-box-left.reveal-on-scroll {
+      opacity: 0;
+      transform: translateX(-110px);
+    }
+    .event-box-left.reveal-on-scroll.is-visible {
+      opacity: 1;
+      transform: translateX(0);
     }
 
-    .event-media-holder img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 4s ease;
+    .event-box-right.reveal-on-scroll {
+      opacity: 0;
+      transform: translateX(110px);
+    }
+    .event-box-right.reveal-on-scroll.is-visible {
+      opacity: 1;
+      transform: translateX(0);
     }
 
-    .event-card-item:hover .event-media-holder img {
-      transform: scale(1.05);
+    @media (max-width: 600px) {
+      .event-card-item {
+        padding: 24px 20px;
+        border-radius: 22px;
+      }
+      .event-box-left.reveal-on-scroll {
+        transform: translateX(-40px);
+      }
+      .event-box-right.reveal-on-scroll {
+        transform: translateX(40px);
+      }
     }
 
-    .event-holder-badge {
-      position: absolute;
-      top: 16px;
-      left: 16px;
-      background: rgba(8, 105, 114, 0.85);
-      backdrop-filter: blur(8px);
-      border: 1px solid var(--gold);
-      color: #FFFFFF;
-      padding: 4px 14px;
-      border-radius: 20px;
-      font-family: var(--font-sans);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-
-    .event-content-holder {
-      padding: 34px 28px;
+    .event-card-header-bar {
       display: flex;
-      flex-direction: column;
-      justify-content: center;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+    }
+
+    .event-day-ribbon {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-royal);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--primary);
+      background: rgba(250, 240, 220, 0.7);
+      border: 1px solid var(--gold);
+      padding: 5px 16px;
+      border-radius: 20px;
+    }
+
+    .event-day-ribbon.royal-day-ribbon {
+      background: linear-gradient(135deg, #781F34, #4A0E1C);
+      color: #FFE494;
+      border-color: #FFE494;
+    }
+
+    .event-loc-chip {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--peacock-teal);
+      background: rgba(8, 105, 114, 0.08);
+      border: 1px solid rgba(8, 105, 114, 0.25);
+      padding: 4px 14px;
+      border-radius: 16px;
+    }
+
+    .event-loc-chip.royal-loc-chip {
+      color: #781F34;
+      background: rgba(120, 31, 52, 0.08);
+      border-color: rgba(120, 31, 52, 0.25);
     }
 
     .event-tag-pill {
       display: inline-block;
       font-family: var(--font-sans);
-      font-size: 12px;
+      font-size: 16px;
       font-weight: 700;
-      color: var(--peacock-teal);
-      background: var(--peacock-light);
-      padding: 4px 14px;
-      border-radius: 20px;
-      margin-bottom: 12px;
+      color: #FFFFFF;
+      padding: 8px 22px;
+      border-radius: 30px;
+      margin-bottom: 16px;
       width: fit-content;
+      box-shadow: 0 4px 14px rgba(8, 105, 114, 0.28);
+      border: 1px solid rgba(212, 175, 55, 0.5);
+      letter-spacing: 0.4px;
+    }
+
+    .event-tag-pill.date-highlight-1 {
+      background: linear-gradient(135deg, #086972 0%, #05484F 100%);
+      border: 1.5px solid var(--gold);
+    }
+
+    .event-tag-pill.date-highlight-2 {
+      background: linear-gradient(135deg, #B5840D 0%, #875F05 100%);
+      border: 1.5px solid #FFE494;
+      box-shadow: 0 4px 14px rgba(181, 132, 13, 0.35);
+    }
+
+    .event-tag-pill.date-highlight-3 {
+      background: linear-gradient(135deg, #8A1C4E 0%, #5E0D32 100%);
+      border: 1.5px solid var(--gold);
+      box-shadow: 0 4px 14px rgba(138, 28, 78, 0.35);
+    }
+
+    .event-tag-pill.date-highlight-wedding {
+      background: linear-gradient(135deg, #781F34 0%, #420A18 100%);
+      border: 2px solid var(--gold);
+      font-size: 17px;
+      padding: 10px 26px;
+      box-shadow: 0 6px 20px rgba(120, 31, 52, 0.45);
     }
 
     .event-headline {
       font-family: var(--font-royal);
-      font-size: 26px;
+      font-size: 28px;
       color: var(--primary);
-      margin-bottom: 12px;
+      margin-bottom: 18px;
       line-height: 1.3;
     }
 
-    .event-timing-rows {
-      font-size: 14px;
-      color: var(--text-muted);
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      margin-bottom: 16px;
+    .event-timing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+      margin-bottom: 20px;
     }
 
-    .event-timing-row {
+        .event-time-tile {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 15px;
+      background: #FFFFFF;
+      border: 1.8px solid var(--gold);
+      border-radius: 18px;
+      padding: 14px 20px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
     }
 
-    .event-timing-row svg {
-      width: 18px;
-      height: 18px;
-      stroke: var(--peacock-teal);
-      flex-shrink: 0;
+    .event-time-tile:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
     }
+
+    .tile-icon-bubble {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: transform 0.3s ease;
+    }
+
+    .event-time-tile:hover .tile-icon-bubble {
+      transform: scale(1.08);
+    }
+
+    .tile-icon-bubble svg {
+      width: 22px;
+      height: 22px;
+      stroke-width: 2.3;
+    }
+
+    .tile-info-col {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .tile-label {
+      font-size: 13.5px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+
+    .tile-time {
+      font-size: 17.5px;
+      font-weight: 800;
+      line-height: 1.25;
+    }
+
+    /* THEME 1: TEAL & GOLD HIGHLIGHT (Ganesh Poojan) */
+    .event-time-tile.teal-time-tile {
+      background: linear-gradient(145deg, #FFFFFF 0%, #F0F9FA 100%);
+      border: 1.8px solid #086972;
+      box-shadow: 0 6px 18px rgba(8, 105, 114, 0.12);
+    }
+    .teal-bubble {
+      background: linear-gradient(135deg, #086972 0%, #033C41 100%);
+      box-shadow: 0 5px 14px rgba(8, 105, 114, 0.45);
+      border: 2px solid #FFE494;
+    }
+    .teal-bubble svg { stroke: #FFFFFF; }
+    .teal-time-tile .tile-label { color: #086972; }
+    .teal-time-tile .tile-time { color: #044349; }
+
+    /* THEME 2: ROYAL GOLD & SAFFRON HIGHLIGHT (Mayra & Chaak-Kalash) */
+    .event-time-tile.gold-time-tile {
+      background: linear-gradient(145deg, #FFFFFF 0%, #FFF9EB 100%);
+      border: 1.8px solid #B5840D;
+      box-shadow: 0 6px 18px rgba(181, 132, 13, 0.15);
+    }
+    .gold-bubble {
+      background: linear-gradient(135deg, #B5840D 0%, #634500 100%);
+      box-shadow: 0 5px 14px rgba(181, 132, 13, 0.45);
+      border: 2px solid #FFE494;
+    }
+    .gold-bubble svg { stroke: #FFFFFF; }
+    .gold-time-tile .tile-label { color: #7A5703; }
+    .gold-time-tile .tile-time { color: #573B00; }
+
+    /* THEME 3: ROYAL MAGENTA & ROSE HIGHLIGHT (Sagai & Mahila Sangeet) */
+    .event-time-tile.magenta-time-tile {
+      background: linear-gradient(145deg, #FFFFFF 0%, #FFF0F6 100%);
+      border: 1.8px solid #8A1C4E;
+      box-shadow: 0 6px 18px rgba(138, 28, 78, 0.15);
+    }
+    .magenta-bubble {
+      background: linear-gradient(135deg, #8A1C4E 0%, #4A0825 100%);
+      box-shadow: 0 5px 14px rgba(138, 28, 78, 0.45);
+      border: 2px solid #FFE494;
+    }
+    .magenta-bubble svg { stroke: #FFFFFF; }
+    .magenta-time-tile .tile-label { color: #8A1C4E; }
+    .magenta-time-tile .tile-time { color: #52092B; }
+
+    /* THEME 4: ROYAL MAROON & 24K GOLD HIGHLIGHT (Panigrahan Sanskar) */
+    .event-time-tile.royal-time-tile {
+      background: linear-gradient(145deg, #FFFFFF 0%, #FFF5EB 100%);
+      border: 2px solid #781F34;
+      box-shadow: 0 6px 22px rgba(120, 31, 52, 0.22);
+    }
+    .royal-bubble {
+      background: linear-gradient(135deg, #781F34 0%, #3B0613 100%);
+      box-shadow: 0 5px 16px rgba(120, 31, 52, 0.55);
+      border: 2px solid #FFE494;
+    }
+    .royal-bubble svg { stroke: #FFE494; }
+    .royal-time-tile .tile-label { color: #781F34; }
+    .royal-time-tile .tile-time { color: #781F34; font-size: 18px; }
 
     .event-note-text {
-      font-size: 13.5px;
+      font-size: 14.5px;
       color: var(--text-dark);
-      line-height: 1.7;
+      line-height: 1.8;
+      font-family: var(--font-sans);
+      border-left: 3px solid var(--gold);
+      padding: 8px 14px;
+      margin-top: 14px;
+      background: rgba(250, 246, 238, 0.5);
+      border-radius: 0 10px 10px 0;
     }
 
+    /* Wedding highlight card extra royal styles */
     .event-card-item.wedding-highlight {
-      border: 2px solid var(--gold);
-      background: #FFFDF9;
-      box-shadow: 0 20px 50px var(--gold-glow);
+      background: linear-gradient(145deg, #FFFDF8 0%, #FFF5EB 100%);
+      border: 2.5px solid var(--gold);
+      box-shadow: 0 20px 60px rgba(120, 31, 52, 0.16), 0 0 35px var(--gold-glow);
+    }
+
+    .event-card-item.wedding-highlight::before {
+      height: 8px;
+      background: linear-gradient(90deg, #781F34, #D4AF37, #FFE494, #781F34);
     }
 
     .event-card-item.wedding-highlight .event-headline {
-      color: var(--primary);
-      font-size: 28px;
+      color: #781F34;
+      font-size: 30px;
+    }
+
+    .royal-time-tile {
+      background: rgba(255, 250, 240, 0.95);
+      border-color: rgba(120, 31, 52, 0.3);
+    }
+
+    .royal-bubble {
+      background: linear-gradient(135deg, #781F34, #D4AF37);
+    }
+
+    .royal-note {
+      border-left-color: #781F34;
+      background: rgba(255, 245, 235, 0.8);
+      font-weight: 500;
     }
 
     /* ==================== 5. FAMILY & RELATIVES ==================== */
@@ -1215,8 +1801,8 @@
     <div class="gate-lighting-overlay"></div>
 
     <div class="door-interact-wrapper">
-      <h1 class="gate-calligraphy-title">डा. रक्षा संग डा. भास्कर</h1>
-      <div class="gate-calligraphy-sub">शुक्रवार, 20 नवम्बर 2026 • पी.एन. पैलेस, बीकानेर</div>
+      <h1 class="gate-calligraphy-title">डॉ. रक्षा संग डॉ. भास्कर</h1>
+      <div class="gate-calligraphy-sub">शुक्रवार, 20 नवम्बर 2026 • पी.एन. पैलेस, गंगाशहर, बीकानेर</div>
 
       <div class="gate-scroll-cue" id="gateScrollCueBtn">
         <span>द्वार खोलने के लिए नीचे स्क्रॉल करें</span>
@@ -1267,23 +1853,23 @@
       </div>
 
       <div class="hero-couple-headline">
-        <span>आयुष्मती डा. रक्षा</span>
+        <span>आयुष्मती डॉ. रक्षा</span>
         <span class="hero-sang-badge">संग</span>
-        <span>आयुष्मान डा. भास्कर</span>
+        <span>आयुष्मान डॉ. भास्कर</span>
       </div>
 
       <div class="hero-subdate">
-        शुक्रवार, 20 नवम्बर 2026 • पी.एन. पैलेस, बीकानेर
+        शुक्रवार, 20 नवम्बर 2026 • पी.एन. पैलेस, गंगाशहर, बीकानेर
       </div>
 
       <!-- ==================== MODERN COUTURE COUPLE JHAROKHA STAGE ==================== -->
-      <div class="couture-jharokha-card" title="वर-वधू: डा. रक्षा एवं डा. भास्कर">
+      <div class="couture-jharokha-card" title="वर-वधू: डॉ. रक्षा एवं डॉ. भास्कर">
         <div class="couture-image-holder">
-          <img src="modern_couple_couture.jpg" alt="डा. रक्षा एवं डा. भास्कर - रॉयल परिणय">
+          <img src="couple_traditional_hero.jpg" alt="डॉ. रक्षा एवं डॉ. भास्कर - रॉयल परिणय">
           <div class="couture-overlay-gradient"></div>
           
           <div class="couture-caption-banner">
-            <div class="couture-caption-title">डा. रक्षा संग डा. भास्कर</div>
+            <div class="couture-caption-title">डॉ. रक्षा संग डॉ. भास्कर</div>
             <div class="couture-caption-sub">“दो समर्पित चिकित्सकों का पावन परिणय संगम”</div>
           </div>
         </div>
@@ -1315,16 +1901,117 @@
       </div>
     </section>
 
+    <!-- ==================== TRENDING RADHA-KRISHNA DIVINE UNION & COUPLE COMING TOGETHER ==================== -->
+    <section class="radha-krishna-milap-section reveal-on-scroll" id="divine-milap-section">
+      <h2 class="section-royal-title">॥ जैसे राधा संग श्याम, वैसे रक्षा संग भास्कर ॥</h2>
+      <p class="milap-subhead-text">
+        श्री राधा-कृष्ण के पावन कर-कमल आशीर्वाद से संपन्न होता दो समर्पित चिकित्सकों का अटूट परिणय संगम
+      </p>
+
+      <!-- Interactive Stage -->
+      <div class="milap-stage-box" id="milapStageBox">
+        
+        <!-- Replay Floating Button -->
+        <button type="button" class="milap-replay-badge" onclick="runCinematicMilapSequence()" title="एनिमेशन पुनः देखें">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+            <path d="M3 3v5h5"/>
+          </svg>
+          पुनः देखें
+        </button>
+
+        <!-- View 1: Divine Hands Moving & Meeting -->
+        <div class="divine-hands-view" id="divineHandsView">
+          <div class="divine-stage-canvas-bg"></div>
+          <div class="divine-halo-light" id="divineHaloLight"></div>
+
+          <!-- Krishna's Hand (Sliding in from Left) -->
+          <div class="divine-hand-item krishna-hand-wrap" id="krishnaHandWrap">
+            <img src="krishna_hand_trans.png" alt="श्रीकृष्ण कर-कमल" class="divine-hand-img">
+            <div class="hand-sacred-caption">॥ श्रीकृष्ण ॥</div>
+          </div>
+
+          <!-- Center Divine Flash on Touch -->
+          <div class="divine-touch-burst" id="divineTouchBurst">
+            <div class="touch-burst-glow"></div>
+            <div class="touch-sacred-om">ॐ</div>
+          </div>
+
+          <!-- Radha's Hand (Sliding in from Right) -->
+          <div class="divine-hand-item radha-hand-wrap" id="radhaHandWrap">
+            <img src="radha_hand_trans.png" alt="श्रीराधा कर-कमल" class="divine-hand-img">
+            <div class="hand-sacred-caption">॥ श्रीराधा ॥</div>
+          </div>
+
+          <div class="stage-floating-caption" id="handsCaption">
+            <span class="sacred-feather-icon">🪶</span>
+            <span>॥ श्री राधा-कृष्ण दिव्य कर-कमल मिलन ॥</span>
+            <span class="sacred-lotus-icon">🪷</span>
+          </div>
+        </div>
+
+        <!-- View 2: Real Couple Coming Together -->
+        <div class="couple-coming-together-view" id="coupleTogetherView">
+          
+          <!-- Groom (Dr. Bhaskar) sliding in from left -->
+          <div class="milap-actor groom-actor" id="groomActor">
+            <div class="actor-photo-frame">
+              <img src="groom_circle_portrait.jpg" alt="आयुष्मान डॉ. भास्कर">
+            </div>
+            <div class="actor-name-badge">आयुष्मान डॉ. भास्कर</div>
+          </div>
+
+          <!-- Central Auspicious Kalash (Replacing Heart) -->
+          <div class="milap-center-knot" id="milapCenterKnot">
+            <div class="glowing-kalash-seal" title="मंगल कलश">
+              <svg viewBox="0 0 64 64" width="40" height="40" fill="none">
+                <path d="M22 28 C22 24, 42 24, 42 28 C42 32, 48 36, 48 44 C48 52, 40 56, 32 56 C24 56, 16 52, 16 44 C16 36, 22 32, 22 28 Z" fill="url(#goldGradK)" stroke="#B8860B" stroke-width="1.5"/>
+                <path d="M24 56 L40 56 L38 60 L26 60 Z" fill="#D4AF37"/>
+                <ellipse cx="32" cy="28" rx="10" ry="3.5" fill="#FFEAA7" stroke="#B8860B" stroke-width="1.2"/>
+                <path d="M26 28 C20 20, 16 22, 14 18 C18 16, 26 22, 28 26" fill="#2E7D32"/>
+                <path d="M30 26 C32 16, 32 14, 32 12 C32 14, 32 16, 34 26" fill="#43A047"/>
+                <path d="M36 26 C38 22, 46 16, 50 18 C48 22, 44 20, 38 28" fill="#2E7D32"/>
+                <ellipse cx="32" cy="22" rx="6" ry="7.5" fill="#8D6E63" stroke="#5D4037" stroke-width="1"/>
+                <circle cx="32" cy="21" r="1.8" fill="#D32F2F"/>
+                <path d="M32 38 L32 46 M28 42 L36 42 M32 38 L35 38 M32 46 L29 46 M28 42 L28 39 M36 42 L36 45" stroke="#781F34" stroke-width="1.5" stroke-linecap="round"/>
+                <defs>
+                  <radialGradient id="goldGradK" cx="35%" cy="35%" r="70%">
+                    <stop offset="0%" stop-color="#FFFDF0"/>
+                    <stop offset="40%" stop-color="#FFD700"/>
+                    <stop offset="100%" stop-color="#B8860B"/>
+                  </radialGradient>
+                </defs>
+              </svg>
+            </div>
+            <div class="knot-sacred-text">॥ मंगल परिणय ॥</div>
+          </div>
+
+          <!-- Bride (Dr. Raksha) sliding in from right -->
+          <div class="milap-actor bride-actor" id="brideActor">
+            <div class="actor-photo-frame">
+              <img src="bride_circle_portrait.jpg" alt="आयुष्मती डॉ. रक्षा">
+            </div>
+            <div class="actor-name-badge">आयुष्मती डॉ. रक्षा</div>
+          </div>
+
+          <div class="stage-floating-caption union-caption">
+            <span>✨ श्री राधा-कृष्ण आशीर्वाद से संपन्न पावन परिणय ✨</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
     <!-- ==================== 3. THE COUPLE & LIVE COUNTDOWN ==================== -->
     <section class="couple-master-section reveal-on-scroll">
       
       <!-- Palace Artwork Viewport -->
       <div class="palace-art-container">
-        <img src="umaid_bhawan_couple.jpg" alt="Royal Couple at Palace">
+        <img src="golden_hour_palace_romance.png" alt="डॉ. रक्षा एवं डॉ. भास्कर - शाही परिणय">
         <div class="palace-art-veil"></div>
         <div class="palace-art-caption-box">
           <div class="palace-caption-head">शाही आभा एवं पावन परिणय</div>
-          <div class="palace-caption-subtext">दो समर्पित चिकित्सकों का ऐतिहासिक परिणय उत्सव</div>
+          <div class="palace-caption-subtext">जीवन के नए सफर की ओर अग्रसर डॉ. रक्षा एवं डॉ. भास्कर</div>
         </div>
       </div>
 
@@ -1335,10 +2022,13 @@
         <div class="doctors-two-col">
           <!-- BRIDE -->
           <div class="doctor-card-box">
+            <div class="doctor-avatar-circle">
+              <img src="bride_circle_portrait.jpg" alt="आयुष्मती डॉ. रक्षा">
+            </div>
             <span class="doctor-tag-pill">आयुष्मती (वधू)</span>
-            <h3 class="doctor-name-display">डा. रक्षा</h3>
+            <h3 class="doctor-name-display">डॉ. रक्षा</h3>
             <div class="doctor-lineage-desc">
-              <strong>सुपुत्री:</strong> स्व. श्रीमती गीता देवी धर्मपत्नी स्व. श्री भंवरलाल जी तिवाड़ी<br>
+              <strong>सुपौत्री:</strong> स्व. श्रीमती गीता देवी धर्मपत्नी स्व. श्री भंवरलाल जी तिवाड़ी<br>
               <strong>सुपुत्री:</strong> श्रीमती सरोज देवी धर्मपत्नी श्रीकिशन तिवाड़ी (अपनों द्वारा)
             </div>
           </div>
@@ -1347,10 +2037,13 @@
 
           <!-- GROOM -->
           <div class="doctor-card-box">
+            <div class="doctor-avatar-circle">
+              <img src="groom_circle_portrait.jpg" alt="आयुष्मान डॉ. भास्कर">
+            </div>
             <span class="doctor-tag-pill">आयुष्मान (वर)</span>
-            <h3 class="doctor-name-display">डा. भास्कर</h3>
+            <h3 class="doctor-name-display">डॉ. भास्कर</h3>
             <div class="doctor-lineage-desc">
-              <strong>सुपुत्र:</strong> श्रीमती सीता देवी धर्मपत्नी स्व. श्री मूलचन्द जी<br>
+              <strong>सुपौत्र:</strong> श्रीमती सीता देवी धर्मपत्नी स्व. श्री मूलचन्द जी<br>
               <strong>सुपुत्र:</strong> श्रीमती चन्द्रकांता धर्मपत्नी श्री अशोक कुमार जी
             </div>
           </div>
@@ -1383,134 +2076,228 @@
     </section>
 
     <!-- ==================== 4. MANGLIK KARYAKRAM ==================== -->
-    <section class="reveal-on-scroll">
+    <section class="reveal-on-scroll" id="events-section">
       <div class="section-header-box">
-        <div class="section-eyebrow">CELEBRATION ITINERARY</div>
+        <div class="section-eyebrow">CELEBRATION ITINERARY • मांगलिक उत्सव</div>
         <h2 class="section-royal-title">मांगलिक कार्यक्रम</h2>
       </div>
 
       <div class="venue-grand-ribbon">
         🏰 <strong>विशेष सूचना:</strong> 19 एवं 20 नवम्बर 2026 के समस्त मांगलिक कार्यक्रम<br>
-        <strong>पी.एन. पैलेस, बीकानेर</strong> में सानंद संपन्न होंगे।
+        <strong>पी.एन. पैलेस, गंगाशहर, बीकानेर</strong> में सानंद संपन्न होंगे।
       </div>
 
       <div class="events-stack-wrap">
 
-        <!-- EVENT 1: GANESH NIMANTRAN & VINAYAK POOJAN (16 NOV) -->
-        <div class="event-card-item reveal-on-scroll">
-          <div class="event-media-holder">
-            <img src="ganesha_gold.jpg" alt="गणेश पूजन">
-            <span class="event-holder-badge">दिन 1 • परबतसर</span>
+        <!-- EVENT 1: GANESH NIMANTRAN & VINAYAK POOJAN (16 NOV) - COMES FROM LEFT -->
+        <div class="event-card-item event-box-left reveal-on-scroll">
+          <div class="event-card-header-bar">
+            <div class="event-day-ribbon">
+              <span>🪔</span>
+              <span>दिवस 1 • श्री गणेश निमंत्रण</span>
+            </div>
+            <div class="event-loc-chip">📍 निवास स्थान (परबतसर)</div>
           </div>
-          <div class="event-content-holder">
-            <span class="event-tag-pill">सोमवार, 16 नवम्बर 2026 (कार्तिक शुक्ल 7)</span>
-            <h3 class="event-headline">गणेश निमंत्रण एवं विनायक पूजन</h3>
-            <div class="event-timing-rows">
-              <div class="event-timing-row">
-                <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                <span><strong>गणेश निमंत्रण:</strong> प्रातः 9:15 बजे</span>
+
+          <div class="event-tag-pill date-highlight-1">
+            📅 सोमवार, 16 नवम्बर 2026 (कार्तिक शुक्ल 7)
+          </div>
+
+          <h3 class="event-headline">श्री गणेश निमंत्रण एवं विनायक पूजन</h3>
+
+          <div class="event-timing-grid">
+            <div class="event-time-tile teal-time-tile">
+              <div class="tile-icon-bubble teal-bubble">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
               </div>
-              <div class="event-timing-row">
-                <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                <span><strong>विनायक पूजन:</strong> मध्यान्ह 3:15 बजे</span>
-              </div>
-              <div class="event-timing-row">
-                <svg viewBox="0 0 24 24" fill="none"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
-                <span><strong>स्थान:</strong> निवास स्थान (परबतसर)</span>
+              <div class="tile-info-col">
+                <span class="tile-label">गणेश निमंत्रण</span>
+                <span class="tile-time">प्रातः 9:15 बजे</span>
               </div>
             </div>
-            <p class="event-note-text">
-              विघ्नहर्ता गणपति बप्पा के पावन न्योते और कुलदेवताओं के आशीर्वाद के साथ विवाह उत्सव का शुभारंभ।
-            </p>
+
+            <div class="event-time-tile teal-time-tile">
+              <div class="tile-icon-bubble teal-bubble">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div class="tile-info-col">
+                <span class="tile-label">विनायक पूजन</span>
+                <span class="tile-time">मध्यान्ह 3:15 बजे</span>
+              </div>
+            </div>
+
+            <div class="event-time-tile teal-time-tile">
+              <div class="tile-icon-bubble teal-bubble">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+              </div>
+              <div class="tile-info-col">
+                <span class="tile-label">आयोजन स्थल</span>
+                <span class="tile-time">निज निवास (परबतसर)</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="event-note-text">
+            “विघ्नहर्ता गणपति बप्पा के पावन न्योते और कुलदेवताओं के आशीर्वाद के साथ विवाह उत्सव का मंगल शुभारंभ।”
           </div>
         </div>
 
-        <!-- EVENT 2: MAYRA & CHAAK-KALASH (19 NOV) -->
-        <div class="event-card-item flipped reveal-on-scroll">
-          <div class="event-media-holder">
-            <img src="umaid_bhawan_couple.jpg" alt="मायरा एवं चाक-कलश">
-            <span class="event-holder-badge">दिन 2 • बीकानेर</span>
+        <!-- EVENT 2: MAYRA & CHAAK-KALASH (19 NOV) - COMES FROM RIGHT -->
+        <div class="event-card-item event-box-right reveal-on-scroll">
+          <div class="event-card-header-bar">
+            <div class="event-day-ribbon">
+              <span>🏺</span>
+              <span>दिवस 2 • मायरा (भात) एवं चाक-कलश</span>
+            </div>
+            <div class="event-loc-chip">📍 पी.एन. पैलेस, गंगाशहर, बीकानेर</div>
           </div>
-          <div class="event-content-holder">
-            <span class="event-tag-pill" style="background:#FFF9E6; color:#9E6B00;">गुरुवार, 19 नवम्बर 2026 (कार्तिक शुक्ल 9)</span>
-            <h3 class="event-headline">मायरा (भात) एवं चाक-कलश</h3>
-            <div class="event-timing-rows">
-              <div class="event-timing-row">
-                <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                <span><strong>मायरा (भात):</strong> प्रातः 11:15 बजे</span>
+
+          <div class="event-tag-pill date-highlight-2">
+            📅 गुरुवार, 19 नवम्बर 2026 (कार्तिक शुक्ल 9)
+          </div>
+
+          <h3 class="event-headline">मायरा (भात) एवं चाक-कलश</h3>
+
+          <div class="event-timing-grid">
+            <div class="event-time-tile gold-time-tile">
+              <div class="tile-icon-bubble gold-bubble">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
               </div>
-              <div class="event-timing-row">
-                <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                <span><strong>चाक-कलश:</strong> मध्यान्ह 12:15 बजे</span>
-              </div>
-              <div class="event-timing-row">
-                <svg viewBox="0 0 24 24" fill="none"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                <span><strong>स्थान:</strong> पी.एन. पैलेस, बीकानेर</span>
+              <div class="tile-info-col">
+                <span class="tile-label">मायरा (भात)</span>
+                <span class="tile-time">प्रातः 11:15 बजे</span>
               </div>
             </div>
-            <p class="event-note-text">
-              ननिहाल पक्ष द्वारा स्नेह और सम्मान का पावन भात (मायरा) एवं पारंपरिक चाक-कलश उत्सव।
-            </p>
+
+            <div class="event-time-tile gold-time-tile">
+              <div class="tile-icon-bubble gold-bubble">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div class="tile-info-col">
+                <span class="tile-label">चाक-कलश</span>
+                <span class="tile-time">मध्यान्ह 12:15 बजे</span>
+              </div>
+            </div>
+
+            <div class="event-time-tile gold-time-tile">
+              <div class="tile-icon-bubble gold-bubble">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div class="tile-info-col">
+                <span class="tile-label">आयोजन स्थल</span>
+                <span class="tile-time">पी.एन. पैलेस, गंगाशहर, बीकानेर</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="event-note-text">
+            “ननिहाल पक्ष द्वारा अपार स्नेह, आदर और सम्मान का पावन भात (मायरा) एवं पारंपरिक चाक-कलश उत्सव।”
           </div>
         </div>
 
-        <!-- EVENT 3: SAGAI & SANGEET (19 NOV) -->
-        <div class="event-card-item reveal-on-scroll">
-          <div class="event-media-holder">
-            <img src="sangeet_stage.jpg" alt="महिला संगीत एवं सगाई">
-            <span class="event-holder-badge">दिन 2 सांध्य • बीकानेर</span>
+        <!-- EVENT 3: SAGAI & SANGEET (19 NOV) - COMES FROM LEFT -->
+        <div class="event-card-item event-box-left reveal-on-scroll">
+          <div class="event-card-header-bar">
+            <div class="event-day-ribbon">
+              <span>🪕</span>
+              <span>दिवस 2 सांध्य • सगाई एवं संगीत</span>
+            </div>
+            <div class="event-loc-chip">📍 पी.एन. पैलेस, गंगाशहर, बीकानेर</div>
           </div>
-          <div class="event-content-holder">
-            <span class="event-tag-pill" style="background:#FDE8F0; color:#8A1C4E;">गुरुवार, 19 नवम्बर 2026</span>
-            <h3 class="event-headline">सगाई समारोह एवं महिला संगीत</h3>
-            <div class="event-timing-rows">
-              <div class="event-timing-row">
-                <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                <span><strong>सगाई समारोह:</strong> मध्यान्ह 5:15 बजे</span>
+
+          <div class="event-tag-pill date-highlight-3">
+            📅 गुरुवार, 19 नवम्बर 2026 (कार्तिक शुक्ल 9)
+          </div>
+
+          <h3 class="event-headline">सगाई समारोह एवं महिला संगीत</h3>
+
+          <div class="event-timing-grid">
+            <div class="event-time-tile magenta-time-tile">
+              <div class="tile-icon-bubble magenta-bubble">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
               </div>
-              <div class="event-timing-row">
-                <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                <span><strong>महिला संगीत:</strong> रात्रि 7:15 बजे से</span>
-              </div>
-              <div class="event-timing-row">
-                <svg viewBox="0 0 24 24" fill="none"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                <span><strong>स्थान:</strong> पी.एन. पैलेस, बीकानेर</span>
+              <div class="tile-info-col">
+                <span class="tile-label">सगाई समारोह</span>
+                <span class="tile-time">सायं 5:15 बजे</span>
               </div>
             </div>
-            <p class="event-note-text">
-              झिलमिलाती परियों जैसी रोशनियों, ढोलक की मधुर थाप, नृत्य और खुशियों से सजी संगीतमयी शाम।
-            </p>
+
+            <div class="event-time-tile magenta-time-tile">
+              <div class="tile-icon-bubble magenta-bubble">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div class="tile-info-col">
+                <span class="tile-label">महिला संगीत एवं रास</span>
+                <span class="tile-time">रात्रि 7:15 बजे से</span>
+              </div>
+            </div>
+
+            <div class="event-time-tile magenta-time-tile">
+              <div class="tile-icon-bubble magenta-bubble">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div class="tile-info-col">
+                <span class="tile-label">आयोजन स्थल</span>
+                <span class="tile-time">पी.एन. पैलेस, गंगाशहर, बीकानेर</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="event-note-text">
+            “झिलमिलाती परियों जैसी रोशनियों, ढोलक की मधुर थाप, राजस्थानी गीतों और खुशियों से सजी संगीतमयी शाम।”
           </div>
         </div>
 
-        <!-- EVENT 4: PANIGRAHAN SANSKAR & AASHIRWAD (20 NOV) -->
-        <div class="event-card-item flipped wedding-highlight reveal-on-scroll">
-          <div class="event-media-holder">
-            <img src="mandap_fireworks.jpg" alt="शुभ विवाह पाणिग्रहण संस्कार">
-            <span class="event-holder-badge" style="background: var(--primary); color:#fff;">दिन 3 • मुख्य विवाह</span>
+        <!-- EVENT 4: PANIGRAHAN SANSKAR & AASHIRWAD (20 NOV) - COMES FROM RIGHT -->
+        <div class="event-card-item event-box-right wedding-highlight reveal-on-scroll">
+          <div class="event-card-header-bar">
+            <div class="event-day-ribbon royal-day-ribbon">
+              <span>👑</span>
+              <span>दिवस 3 • मुख्य पावन विवाह</span>
+            </div>
+            <div class="event-loc-chip royal-loc-chip">📍 पी.एन. पैलेस, गंगाशहर, बीकानेर</div>
           </div>
-          <div class="event-content-holder">
-            <span class="event-tag-pill" style="background: var(--primary); color: #fff;">
-              शुक्रवार, 20 नवम्बर 2026 (कार्तिक शुक्ल 11)
-            </span>
-            <h3 class="event-headline">पाणिग्रहण संस्कार एवं आशीर्वाद समारोह</h3>
-            <div class="event-timing-rows">
-              <div class="event-timing-row">
-                <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                <span><strong>पाणिग्रहण संस्कार:</strong> दिवा शुभ लग्नानुसार</span>
+
+          <div class="event-tag-pill date-highlight-wedding">
+            👑 शुक्रवार, 20 नवम्बर 2026 (कार्तिक शुक्ल 11)
+          </div>
+
+          <h3 class="event-headline">शुभ पाणिग्रहण संस्कार एवं शुभाशीर्वाद समारोह</h3>
+
+          <div class="event-timing-grid">
+            <div class="event-time-tile royal-time-tile">
+              <div class="tile-icon-bubble royal-bubble">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
               </div>
-              <div class="event-timing-row">
-                <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                <span><strong>आशीर्वाद एवं स्नेहभोज:</strong> रात्रि 7:15 बजे</span>
-              </div>
-              <div class="event-timing-row">
-                <svg viewBox="0 0 24 24" fill="none"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                <span><strong>स्थान:</strong> पी.एन. पैलेस, बीकानेर</span>
+              <div class="tile-info-col">
+                <span class="tile-label">पाणिग्रहण संस्कार</span>
+                <span class="tile-time">दिवा शुभ लग्नानुसार</span>
               </div>
             </div>
-            <p class="event-note-text">
-              अग्नि को साक्षी मानकर सात फेरों का पावन बंधन, तथा वर-वधू को सपरिवार शुभाशीर्वाद एवं स्नेहभोज।
-            </p>
+
+            <div class="event-time-tile royal-time-tile">
+              <div class="tile-icon-bubble royal-bubble">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div class="tile-info-col">
+                <span class="tile-label">शुभाशीर्वाद एवं स्नेहभोज</span>
+                <span class="tile-time">रात्रि 7:15 बजे से</span>
+              </div>
+            </div>
+
+            <div class="event-time-tile royal-time-tile">
+              <div class="tile-icon-bubble royal-bubble">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div class="tile-info-col">
+                <span class="tile-label">विवाह स्थल</span>
+                <span class="tile-time">पी.एन. पैलेस, गंगाशहर, बीकानेर</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="event-note-text royal-note">
+            “अग्नि को साक्षी मानकर वैदिक मंत्रोच्चार के बीच सात फेरों का पावन बंधन, तथा नव-दंपति को सपरिवार मंगल शुभाशीर्वाद।”
           </div>
         </div>
 
@@ -1571,7 +2358,7 @@
           <div class="cell-box-badge">🎁 बड़े मायरेदार</div>
           <div class="cell-box-text" style="font-size:13px; text-align: left;">
             <p><strong>ननिहाल पक्ष:</strong> श्री रमेशचन्द जी, शिवरतन जी, विजयकुमार जी, बनवारी जी व्यास (जखेड़ा, डीडवाना)</p>
-            <p style="margin-top:6px;"><strong>दादेरा पक्ष:</strong> श्री भालचन्द जी, मनोजकुमार जी मान्डोतल्या (कुचौली, कुचामन सिटी)</p>
+            <p style="margin-top:6px;"><strong>दादेरा पक्ष:</strong> श्री मालचन्द जी, मनोजकुमार जी मान्डोतल्या (कुचौली, कुचामन सिटी)</p>
           </div>
         </div>
 
@@ -1592,13 +2379,13 @@
       <div class="section-eyebrow">VENUE & LOCATION</div>
       <h2 class="venue-title-name">🏰 पी.एन. पैलेस (P.N. Palace)</h2>
       <div class="venue-subtitle-address">
-        बीकानेर, राजस्थान<br>
+        गंगाशहर, बीकानेर (राजस्थान)<br>
         (19 एवं 20 नवम्बर 2026 के समस्त मांगलिक कार्यक्रम)
       </div>
 
       <div class="venue-actions-flex">
         <!-- 1. Google Maps Navigation Button -->
-        <a href="https://maps.google.com/?q=P.N.+Palace+Bikaner" target="_blank" class="action-button-link">
+        <a href="https://maps.google.com/?q=P.N.+Palace+Gangashahar+Bikaner" target="_blank" class="action-button-link">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
             <circle cx="12" cy="9" r="2.5"/>
@@ -1607,11 +2394,11 @@
         </a>
 
         <!-- 2. Direct Call Button -->
-        <a href="tel:+919460272811" class="action-button-link outline-style">
+        <a href="tel:+917014174415" class="action-button-link outline-style">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
           </svg>
-          संपर्क: 9460272811
+          संपर्क: 7014174415
         </a>
       </div>
 
@@ -1663,7 +2450,8 @@
 
       setTimeout(() => {
         gateScreen.classList.add('unlocked');
-      }, 1100);
+        // hero bounce disabled
+      }, 700);
     }
 
     // A. Mouse Wheel Scroll Down Trigger
@@ -1837,6 +2625,72 @@
       requestAnimationFrame(animatePetalsLoop);
     }
     animatePetalsLoop();
+
+    /* Hero photo bounce disabled per user request */
+
+    /* 6. TRENDING MOVING HANDS RADHA-KRISHNA MILAP & COUPLE COMING TOGETHER */
+    const divineHandsView = document.getElementById('divineHandsView');
+    const coupleTogetherView = document.getElementById('coupleTogetherView');
+    let milapAutoPlayed = false;
+    let milapTimer1 = null;
+    let milapTimer2 = null;
+    let milapTimer3 = null;
+
+    function runCinematicMilapSequence() {
+      if (!divineHandsView || !coupleTogetherView) return;
+
+      // Clear any running timers
+      clearTimeout(milapTimer1);
+      clearTimeout(milapTimer2);
+      clearTimeout(milapTimer3);
+
+      // Step 1: Reset to initial positions (Hands offscreen, couple hidden)
+      coupleTogetherView.classList.remove('active-view', 'animate-actors');
+      divineHandsView.classList.remove('hidden-view', 'animate-hands', 'hands-connected');
+
+      // Step 2: Animate Krishna & Radha hands moving in towards each other from left & right
+      // Gentle, slow devotional speed (2.8s glide)
+      milapTimer1 = setTimeout(() => {
+        divineHandsView.classList.add('animate-hands');
+      }, 150);
+
+      // Step 3: At 2.8s, the divine hands meet & clasp in the center! Trigger golden flash & petals
+      milapTimer2 = setTimeout(() => {
+        divineHandsView.classList.add('hands-connected');
+        for (let i = 0; i < 30; i++) {
+          petals.push(new FallingPetal(true));
+        }
+      }, 2800);
+
+      // Step 4: At 4.8s (after 2s of sacred union), transition to real bride & groom moving together!
+      milapTimer3 = setTimeout(() => {
+        divineHandsView.classList.add('hidden-view');
+        coupleTogetherView.classList.add('active-view');
+        
+        setTimeout(() => {
+          coupleTogetherView.classList.add('animate-actors');
+          for (let i = 0; i < 35; i++) {
+            petals.push(new FallingPetal(true));
+          }
+        }, 120);
+      }, 4800);
+    }
+
+    // Auto-trigger when scrolled into view
+    const milapSectionEl = document.getElementById('divine-milap-section');
+    if (milapSectionEl) {
+      const milapObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !milapAutoPlayed) {
+            milapAutoPlayed = true;
+            setTimeout(() => {
+              runCinematicMilapSequence();
+            }, 400);
+          }
+        });
+      }, { threshold: 0.25 });
+      milapObserver.observe(milapSectionEl);
+    }
   </script>
 </body>
 </html>
